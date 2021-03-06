@@ -1,0 +1,12 @@
+{
+    "name": "hasan/instagram",
+    "authors": [
+        {
+            "name": "Hasan Yüksektepe",
+            "email": "hasan.yuksektepe@ogr.iu.edu.tr"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle":"^7.0.1"
+    }
+}
