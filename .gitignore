@@ -1,4 +1,4 @@
 .idea/
 vendor/
 index.php
-src/cache/
+src/cache/*/
