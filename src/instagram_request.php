@@ -7,8 +7,6 @@
     class instagram_request{
         
         public  $headers;
-        private $session_id;
-        private $csrftoken;
         private $app_id    = '567067343352427';
         private $phone_id  = '832f3947-2366-42c7-a49e-88136c36f7ad';
         private $device_id = 'android-daa21d4b02905ea0';
@@ -19,7 +17,7 @@
         public $cache_prefix = 'insta';
         public $cache_time   = 10; //Minute
         
-        public $user_agent = 'Instagram 172.0.0.21.123 Android (22/5.1.1; 160dpi; 540x960; Google/google; google Pixel 2; x86; qcom; tr_TR; 269790810)';
+        public $user_agent = 'Instagram 177.0.0.30.119 Android (22/5.1.1; 160dpi; 540x960; Google/google; google Pixel 2; x86; qcom; tr_TR; 276028050)';
         
         public $username;
         public $password;
@@ -28,23 +26,24 @@
         
         function __construct($username, $password, $functions = null){
             
-            $this->username = $username;
-            $this->password = $password;
+            $this->username  = $username;
+            $this->password  = $password;
             $this->functions = $functions;
             
         }
         
         public function get_csrftoken(){
             
-            $url        = 'https://www.instagram.com/';
+            $url = 'https://www.instagram.com/';
+            
             $cache_file = $this->cache('csrftoken');
             if($cache_file == false){
                 
-                $csrftoken_html = $this->request($url, 'GET', null, null);
+                $csrftoken_html = $this->request($url, 'GET', null, null, null, false);
+                print_r($csrftoken_html);
                 preg_match('|{"config":{"csrf_token":"(.*?)"|is', $csrftoken_html['body'], $csrftoken);
                 
-                $csrftoken       = $csrftoken[1];
-                $this->csrftoken = $csrftoken;
+                $csrftoken = $csrftoken[1];
                 
                 $this->cache('csrftoken', [$csrftoken]);
             }
@@ -56,20 +55,23 @@
             
         }
         
-        private function create_cookie($array = false){
+        public function create_cookie($array = false, $session_id = true){
             
             $cookies_array = [
-                'sessionid' => $this->get_session_id(),
                 'mid'       => 'YB2r4AABAAERcl5ESNxLjr_tt4Q5',
-                'csrftoken' => 'khugUa357Qq939C5NQ2fReWGZXUraEzZ',
+                'csrftoken' => $this->get_csrftoken(),
             ];
+            
+            if($session_id === true){
+                $cookies_array['sessionid'] = $this->get_session_id();
+            }
             
             if($array == false){
                 $cookies = '';
                 foreach($cookies_array as $cookie => $value){
                     $cookies .= $cookie.'='.$value.'; ';
                 }
-                return rtrim($cookies, '; ');
+                return $cookies;
             }
             
             return $cookies_array;
@@ -102,28 +104,63 @@
             }
         }
         
-        public function request($url = '', $type = 'GET', $data = null, $header = null){
+        public function request($url = '', $type = 'GET', $data = null, $header = null, $cookie = null, $user_cookie = true){
             
-            $headers = [
-                'X-IG-App-ID'      => $this->app_id,
-                'X-IG-Device-ID'   => $this->guid,
-                'X-IG-Android-ID'  => $this->device_id,
-                'User-Agent'       => $this->user_agent,
-                'Cookie'           => $this->create_cookie(),
-                'Host'             => 'i.instagram.com',
+            if($type == 'UPLOAD'){
+                $type = 'POST';
+                $data = $data;
+            }
+            else if($type == 'POST' and $data != null){
+                $data = [
+                    'form_params' => $data,
+                ];
+            }
+            
+            $headers_default = [
+                'X-IG-App-Locale'      => 'tr_TR',
+                'X-IG-Device-Locale'   => 'tr_TR',
+                'X-IG-Mapped-Locale'   => 'tr_TR',
+                'X-Pigeon-Session-Id'  => 'fd08fa6f-2d24-4514-8abc-5fd3ca620305',
+                'X-IG-Connection-Type' => 'WIFI',
+                'X-IG-Capabilities'    => '3brTvx8=',
+                'Priority'             => 'u=3',
+                'X-MID'                => 'YB2r4AABAAERcl5ESNxLjr_tt4Q5',
+                'IG-INTENDED-USER-ID'  => 0,
+                'Host'                 => 'i.instagram.com',
+                'X-FB-HTTP-Engine'     => 'Liger',
+                'X-FB-Client-IP'       => 'True',
+                'X-FB-Server-Cluster'  => 'True',
+                'X-IG-App-ID'          => $this->app_id,
+                'X-IG-Device-ID'       => $this->guid,
+                'X-IG-Android-ID'      => $this->device_id,
+                'User-Agent'           => $this->user_agent,
             ];
             
-            $header = $header??$headers;
+            $headers = $header??$headers_default;
+            
+            if($user_cookie == true){
+                $cookie            = $cookie??$this->create_cookie(false, $user_cookie);
+                $headers['Cookie'] = $cookie;
+            }
             
             try{
                 $client = new \GuzzleHttp\Client([
                     'verify' => false,
+                    'headers' => $headers,
                 ]);
                 
+                if($type == 'POST'){
+                    $res = $client->post($url,$data);
+                }else{
+                    $res = $client->get($url);
+                }
+                
+                /*
                 $res = $client->request($type, $url, [
-                    'headers'     => $header,
-                    'form_params' => $data,
+                    'headers' => $headers,
+                    $data??null,
                 ]);
+                */
                 
                 return [
                     'headers' => $res->getHeaders(),
@@ -132,6 +169,8 @@
             }
             catch(GuzzleException $exception){
                 return [
+                    'status'  => 'fail',
+                    'message' => $exception->getMessage(),
                     'headers' => $exception->getResponse()->getHeaders(),
                     'body'    => $exception->getResponse()->getBody()->getContents(),
                 ];
@@ -161,12 +200,12 @@
         
         public function get_session_id($username = null){
             
-            $username = $username??$this->username;
+            $username       = $username??$this->username;
             $this->username = $username;
             
-            $cookie   = $this->cache($username.'-sessionid');
+            $cookie = $this->cache($username.'-sessionid');
             if($cookie == false){
-                $session_id = null;
+                $session_id = 0;
             }
             else{
                 $session_id = $cookie[0];

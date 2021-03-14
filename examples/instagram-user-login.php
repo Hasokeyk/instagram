@@ -3,7 +3,6 @@
     use instagram\instagram;
     
     require "vendor/autoload.php";
-    //require "src/instagram.php";
     
     $username = 'username';
     $password = 'password';

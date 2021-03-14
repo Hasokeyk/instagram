@@ -6,6 +6,7 @@
     require "instagram_login.php";
     require "instagram_user.php";
     require "instagram_statistics.php";
+    require "instagram_upload.php";
     
     class instagram{
         
@@ -22,12 +23,14 @@
                 'login'      => new instagram_login($username, $password, $this->functions),
                 'statistics' => new instagram_statistics($username, $password, $this->functions),
                 'user'       => new instagram_user($username, $password, $this->functions),
+                'upload'     => new instagram_upload($username, $password, $this->functions),
             ];
-    
+            
             $this->request    = new instagram_request($username, $password, $this->functions);
             $this->login      = new instagram_login($username, $password, $this->functions);
             $this->user       = new instagram_user($username, $password, $this->functions);
             $this->statistics = new instagram_statistics($username, $password, $this->functions);
+            $this->upload     = new instagram_upload($username, $password, $this->functions);
             
         }
         

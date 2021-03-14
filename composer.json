@@ -14,9 +14,7 @@
     "license": "MIT",
     "minimum-stability": "stable",
     "require": {
-        "guzzlehttp/guzzle":"^7.0.1"
-    },
-    "require": {
+        "guzzlehttp/guzzle":"^7.0.1",
         "php": ">=7.0.0"
     },
     "autoload": {

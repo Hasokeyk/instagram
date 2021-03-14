@@ -11,10 +11,14 @@
     
     $login = $instagram->login->login_control();
     if($login){
-        
-        $user_posts = $instagram->user->get_user_posts();
-        $user_posts_statistics = $instagram->statistics->get_user_post_detail($user_posts);
-        print_r($user_posts_statistics);
+    
+        $pic_path = __DIR__.'/filename.jpg';
+        $change_profil_pic = $instagram->user->change_profil_pic($pic_path);
+        if($change_profil_pic){
+            echo 'Changed';
+        }else{
+            echo 'Not changed';
+        }
         
     }else{
         echo 'Login Fail';
