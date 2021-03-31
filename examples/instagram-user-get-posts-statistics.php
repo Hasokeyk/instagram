@@ -2,7 +2,7 @@
     
     use instagram\instagram;
     
-    require "vendor/autoload.php";
+    require "../vendor/autoload.php";
     
     $username = 'username';
     $password = 'password';

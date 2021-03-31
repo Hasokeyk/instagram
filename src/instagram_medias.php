@@ -2,7 +2,7 @@
     
     namespace instagram;
     
-    class instagram_user extends instagram_request{
+    class instagram_medias extends instagram_request{
         
         public $username;
         public $password;
@@ -14,24 +14,32 @@
             $this->functions = $functions;
         }
         
-        public function get_user_id($username = null){
+        public function get_post_likes($shortcode = null){
             
-            $username = $username??$this->username;
-            if($username != null){
+            if($shortcode != null){
                 
-                $url = 'https://www.instagram.com/web/search/topsearch/?query='.$username;
+                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/likers/';
                 
                 $json = $this->request($url);
                 $json = json_decode($json['body']);
                 
-                $user_id = 0;
-                foreach($json->users as $user){
-                    if($username == $user->user->username){
-                        $user_id = $user->user->pk;
-                    }
-                }
+                return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function get_post_comments($shortcode = null){
+            
+            if($shortcode != null){
                 
-                return $user_id;
+                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/comments/';
+                
+                $json = $this->request($url);
+                $json = json_decode($json['body']);
+                
+                return $json;
             }
             
             return false;
@@ -103,38 +111,6 @@
             $json = $this->request($url, 'POST', $post_data);
             return json_decode($json['body']);
             
-        }
-        
-        public function get_user_info_by_id($user_id = null){
-        
-            if($user_id != null){
-            
-                $url = 'https://i.instagram.com/api/v1/users/'.$user_id.'/full_detail_info/';
-            
-                $json = $this->request($url);
-                $json = json_decode($json['body']);
-            
-                return $json;
-            }
-        
-            return false;
-        
-        }
-        
-        public function get_user_info_by_username($username = null){
-        
-            if($username != null){
-            
-                $url = 'https://i.instagram.com/api/v1/users/'.$username.'/full_detail_info/';
-            
-                $json = $this->request($url);
-                $json = json_decode($json['body']);
-            
-                return $json;
-            }
-        
-            return false;
-        
         }
         
     }

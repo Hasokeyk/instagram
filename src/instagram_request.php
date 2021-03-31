@@ -40,7 +40,6 @@
             if($cache_file == false){
                 
                 $csrftoken_html = $this->request($url, 'GET', null, null, null, false);
-                print_r($csrftoken_html);
                 preg_match('|{"config":{"csrf_token":"(.*?)"|is', $csrftoken_html['body'], $csrftoken);
                 
                 $csrftoken = $csrftoken[1];
