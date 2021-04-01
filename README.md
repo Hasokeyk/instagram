@@ -8,50 +8,42 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-
-  <a href="https://github.com/hasokeyk/instagram/">
-    <img src="https://cdn.cdnlogo.com/logos/i/4/instagram.svg" alt="Logo" width="80" height="80" />
-  </a>
+<a href="https://github.com/hasokeyk/instagram/">
+<img src="https://cdn.cdnlogo.com/logos/i/4/instagram.svg" alt="Logo" width="80" height="80" />
+</a>
 
 <h3 align="center">Hasokeyk / Instagram</h3>
 
-  <p align="center">
+<p align="center">
     Bu PHP kütüphanesi ile instagram mobil uygulamasının tüm özelliklerini kullanabilirsiniz.
     <br />
     <a href="#">Demo</a>
     ·
     <a href="https://github.com/hasokeyk/instagram/issues">Geri Bildirim</a>
-  </p>
 </p>
-
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Başlıklar</h2></summary>
   <ol>
     <li>
-      <a href="#about-the-project">Proje Hakkında</a>
+      <a href="#proje-hakkında">Proje Hakkında</a>
     </li>
     <li>
-      <a href="#getting-started">Kullanmaya Başlayın</a>
+      <a href="#kullanmaya-başlayın">Kullanmaya Başlayın</a>
       <ul>
-        <li><a href="#prerequisites">Gereksinimler</a></li>
-        <li><a href="#installation">Kurulum</a></li>
+        <li><a href="#gereksinimler">Gereksinimler</a></li>
+        <li><a href="#kurulum">Kurulum</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Kullanım</a></li>
-    <li><a href="#roadmap">Neler Gelecek?</a></li>
-    <li><a href="#contributing">Katkı Sağlayanlar</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">İletişim</a></li>
-    <li><a href="#acknowledgements">Teşekkür</a></li>
+    <li><a href="#kullanım">Kullanım</a></li>
+    <li><a href="#yol-haritası">Yol Haritası</a></li>
+    <li><a href="#katkı-sağlayanlar">Katkı Sağlayanlar</a></li>
+    <li><a href="#lisans">Lisans</a></li>
+    <li><a href="#iletişim">İletişim</a></li>
     <li><a href="#donation">Bağış Yapın</a></li>
   </ol>
 </details>
-
-
-
-<!-- ABOUT THE PROJECT -->
 
 ## Proje Hakkında
 
@@ -91,9 +83,9 @@ Lütfen burayı dikkatle okunuyun.
 
 <!-- USAGE EXAMPLES -->
 
-## Kullanım
+## Örnek Kodlar
 
-#### Login işlemi
+# Login işlemi
 
 Her işlemden önce kullanıcı girişi yapmalısınız. 1 Kere giriş yaptıktan sonra sistem önbelleğe alacaktır ve bundan
 sonraki işlemleriniz daha hızlı bir şekilde çalışacaktır.
@@ -127,7 +119,7 @@ sonraki işlemleriniz daha hızlı bir şekilde çalışacaktır.
 
 ```
 
-#### Kullanıcı Paylaşımlarını Getirme
+# Kullanıcı Paylaşımlarını Getirme
 
 Aşağıdaki kodları çalıştırğınızda giriş yaptığınız kullanıcının son 50 paylaşımını getireceksiniz. Başka birinin
 paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidir.
@@ -172,7 +164,6 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 | Kullanıcı Takipten Çıkma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Kullanıcı İstatistikleri  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 
-
 ## Paylaşım İşlemleri
 
 | İşlemler  | Çalışıyor | Örnek Dosya |
@@ -199,17 +190,18 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 
 ## Katkı Sağlayanlar
 
-
-
 <!-- LICENSE -->
 
 ## Lisans
 
-Bu proje geliştirme aşamasında olduğu sürece indirebilir ve kullanabilirsiniz. Başka amaçlar için kullanılırsa bu kodları yazan kişinin sorumluluğu bulunmamaktadır. Bu projeyi indirip kullanıdığınızda bunu kabul etmiş sayılırsınız.
+Bu proje geliştirme aşamasında olduğu sürece indirebilir ve kullanabilirsiniz. Başka amaçlar için kullanılırsa bu
+kodları yazan kişinin sorumluluğu bulunmamaktadır. Bu projeyi indirip kullanıdığınızda bunu kabul etmiş sayılırsınız.
 
 
+## Bağış Yapın
 
-<!-- CONTACT -->
+patreon: HASOKEYK
+
 
 ## İletişim
 
