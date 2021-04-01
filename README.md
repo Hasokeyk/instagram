@@ -200,7 +200,7 @@ kodları yazan kişinin sorumluluğu bulunmamaktadır. Bu projeyi indirip kullan
 
 ## Bağış Yapın
 
-patreon: HASOKEYK
+patreon: https://www.patreon.com/hasokeyk?fan_landing=true
 
 
 ## İletişim
@@ -227,7 +227,7 @@ Web Sitem : [https://hayatikodla.net](https://hayatikodla.net)
 
 [license-shield]: https://img.shields.io/github/license/hasokeyk/instagram.svg?style=for-the-badge
 
-[license-url]: https://github.com/hasokeyk/instagram/blob/master/LICENSE.txt
+[license-url]: https://github.com/Hasokeyk/instagram/blob/main/LICENSE
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
