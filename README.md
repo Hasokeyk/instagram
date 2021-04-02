@@ -3,7 +3,8 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![Hasan Yüksetepe][linkedin-shield]][linkedin-url]
+[![@hasokeyk][instagram-shield]][instagram-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -162,7 +163,9 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 | Profil Resmi Değiştirme  | :heavy_check_mark: | [instagram-user-change-profil-pic.php](https://github.com/Hasokeyk/instagram/blob/main/examples/instagram-user-change-profil-pic.php) |
 | Kullanıcı Takip Etme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Kullanıcı Takipten Çıkma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Kullanıcı İstatistikleri  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Giriş Yapmış Kullanıcı İstatistikleri  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Giriş Yapmış Kullanıcının En Az Etkileşimde Olduğu Kullanıcılar  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Giriş Yapmış Kullanıcının En Çok Gördüğü Kullanıcılar  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 
 ## Paylaşım İşlemleri
 
@@ -176,6 +179,11 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 | Carousel Paylaşma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Paylaşım Beğenme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Paylaşım Beğenmekten Çıkma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşım Kayıt Etme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşım Kayıt Etmekten Çıkma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşıma Yorum Yazma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşıma Yorum Silme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşım Mesaj Olarak Yollama  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 
 ## Mesajlaşma İşlemleri
 
@@ -200,12 +208,12 @@ kodları yazan kişinin sorumluluğu bulunmamaktadır. Bu projeyi indirip kullan
 
 ## Bağış Yapın
 
-patreon: https://www.patreon.com/hasokeyk?fan_landing=true
+patreon: https://www.patreon.com/hasokeyk
 
 
 ## İletişim
 
-Hasan Yüksektepe - [INSTAGRAM](https://instagram/hasokeyk)
+Hasan Yüksektepe - [INSTAGRAM](https://instagram.com/hasokeyk)
 
 Web Sitem : [https://hayatikodla.net](https://hayatikodla.net)
 
@@ -232,3 +240,7 @@ Web Sitem : [https://hayatikodla.net](https://hayatikodla.net)
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
 [linkedin-url]: https://www.linkedin.com/in/hasan-yuksektepe/
+
+[instagram-shield]: https://img.shields.io/badge/-Instagram-black.svg?style=for-the-badge&logo=Instagram&colorB=555
+
+[instagram-url]: https://instagram.com/hasokeyk/

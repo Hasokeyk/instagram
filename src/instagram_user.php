@@ -137,60 +137,6 @@
             
         }
         
-        public function like($shortcode){
-            
-            if($shortcode != null){
-                
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/like/';
-                
-                $post_data = [
-                    'container_module' => 'feed_contextual_profile',
-                    'delivery_class'   => 'organic',
-                    'radio_type'       => 'wifi-none',
-                    'feed_position'    => '0',
-                    'media_id'         => $shortcode,
-                    '_csrftoken'       => $this->get_csrftoken(),
-                    '_uuid'            => $this->get_guid(),
-                ];
-                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
-                
-                $json = $this->request($url, 'POST', $post_data);
-                $json = json_decode($json['body']);
-                
-                return $json;
-            }
-            
-            return false;
-            
-        }
-        
-        public function unlike($shortcode){
-            
-            if($shortcode != null){
-                
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/unlike/';
-                
-                $post_data = [
-                    'container_module' => 'feed_contextual_profile',
-                    'delivery_class'   => 'organic',
-                    'radio_type'       => 'wifi-none',
-                    'feed_position'    => '0',
-                    'media_id'         => $shortcode,
-                    '_csrftoken'       => $this->get_csrftoken(),
-                    '_uuid'            => $this->get_guid(),
-                ];
-                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
-                
-                $json = $this->request($url, 'POST', $post_data);
-                $json = json_decode($json['body']);
-                
-                return $json;
-            }
-            
-            return false;
-            
-        }
-        
         public function follow($username){
             
             if($username != null){
@@ -226,6 +172,34 @@
                 $me_user_id = $this->get_user_id();
                 
                 $url = 'https://i.instagram.com/api/v1/friendships/destroy/'.$user_id.'/';
+                
+                $post_data = [
+                    'container_module' => 'self_following',
+                    'radio_type'       => 'wifi-none',
+                    'user_id'          => $user_id,
+                    '_csrftoken'       => $this->get_csrftoken(),
+                    '_uid'             => $me_user_id,
+                    '_uuid'            => $this->get_guid(),
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $json = $this->request($url, 'POST', $post_data);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function unfollow_me($username){
+            
+            if($username != null){
+                $user_id    = $this->get_user_id($username);
+                $me_user_id = $this->get_user_id();
+                
+                $url = 'https://i.instagram.com/api/v1/friendships/remove_follower/'.$user_id.'/';
                 
                 $post_data = [
                     'container_module' => 'self_following',
@@ -371,7 +345,7 @@
             $user_id = $this->get_user_id($username);
             $url     = 'https://i.instagram.com/api/v1/direct_v2/threads/get_by_participants/?recipient_users=%5B'.$user_id.'%5D&seq_id=1573&limit=20';
             $json    = $this->request($url, 'GET');
-            //$json    = json_decode($json['body']);
+            $json    = json_decode($json['body']);
             return $json;
             
         }
@@ -445,6 +419,39 @@
             
         }
         
+        public function get_me_least_interacted_with(){
+            
+            $url  = 'https://i.instagram.com/api/v1/friendships/smart_groups/least_interacted_with/?search_surface=follow_list_page&query=&enable_groups=true&rank_token=e667dad2-ccf4-461a-ba53-d83f9007cc7f';
+            $json = $this->request($url);
+            $json = json_decode($json['body']);
+            
+            return $json;
+            
+        }
+        
+        public function get_me_most_seen_in_feed(){
+            
+            $url  = 'https://i.instagram.com/api/v1/friendships/smart_groups/most_seen_in_feed/?search_surface=follow_list_page&query=&enable_groups=true&rank_token=b66b8315-8421-427b-a9c8-c99a894775b6';
+            $json = $this->request($url);
+            $json = json_decode($json['body']);
+            
+            return $json;
+            
+        }
+        
+        public function get_my_statistic(){
+            
+            $url      = 'https://i.instagram.com/api/v1/ads/graphql/?locale=tr_TR&vc_policy=insights_policy&surface=account';
+            $post_var = [
+                'variables' => '{"query_params":{"access_token":"","id":"7573271439"},"timezone":"Asia/Bahrain"}',
+                'doc_id'    => '1706456729417729',
+            ];
+            $json     = $this->request($url, 'POST', $post_var);
+            $json     = json_decode($json['body']);
+            
+            return $json;
+            
+        }
         
         private function generate_client_context(){
             return (round(microtime(true) * 1000) << 22 | random_int(PHP_INT_MIN, PHP_INT_MAX) & 4194303) & PHP_INT_MAX;

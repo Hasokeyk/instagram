@@ -30,7 +30,7 @@
             
         }
         
-        public function get_post_comments($shortcode = null){
+        public function get_comment_post($shortcode = null){
             
             if($shortcode != null){
                 
@@ -68,48 +68,198 @@
             return $result;
         }
         
-        public function change_profil_pic($image_path = null){
+        public function like($shortcode){
             
-            $upload_id         = $this->functions->upload->get_upload_id();
-            $upload_session_id = $this->functions->upload->get_upload_session_id($upload_id);
-            $url               = 'https://i.instagram.com/rupload_igphoto/'.$upload_session_id;
-            
-            $file      = file_get_contents($image_path);
-            $file_size = strlen($file);
-            
-            $header = [
-                "Content-Type"               => "application/octet-stream",
-                "X-Entity-Type"              => "image/jpeg",
-                "X-Entity-Name"              => $upload_session_id,
-                "Offset"                     => "0",
-                "X-Entity-Length"            => $file_size,
-                "Cookie"                     => $this->create_cookie(),
-                "X-Instagram-Rupload-Params" => $this->functions->upload->rupload_params($upload_id),
-            ];
-            
-            $json = $this->request($url, 'UPLOAD', ['body' => $file], $header);
-            $json = json_decode($json['body']);
-            if($json->status == 'ok'){
-                $result = $this->_change_profil_pic($upload_id);
-                if($result->status == 'ok'){
-                    return true;
-                }
+            if($shortcode != null){
+                
+                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/like/';
+                
+                $post_data = [
+                    'container_module' => 'feed_contextual_profile',
+                    'delivery_class'   => 'organic',
+                    'radio_type'       => 'wifi-none',
+                    'feed_position'    => '0',
+                    'media_id'         => $shortcode,
+                    '_csrftoken'       => $this->get_csrftoken(),
+                    '_uuid'            => $this->get_guid(),
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $json = $this->request($url, 'POST', $post_data);
+                $json = json_decode($json['body']);
+                
+                return $json;
             }
             
             return false;
+            
         }
         
-        protected function _change_profil_pic($upload_id){
+        public function unlike($shortcode){
             
-            $url       = 'https://i.instagram.com/api/v1/accounts/change_profile_picture/';
-            $post_data = [
-                '_csrftoken'     => $this->get_csrftoken(),
-                '_uuid'          => $this->get_guid(),
-                'use_fbuploader' => 'true',
-                'upload_id'      => $upload_id,
-            ];
-            $json = $this->request($url, 'POST', $post_data);
-            return json_decode($json['body']);
+            if($shortcode != null){
+                
+                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/unlike/';
+                
+                $post_data = [
+                    'container_module' => 'feed_contextual_profile',
+                    'delivery_class'   => 'organic',
+                    'radio_type'       => 'wifi-none',
+                    'feed_position'    => '0',
+                    'media_id'         => $shortcode,
+                    '_csrftoken'       => $this->get_csrftoken(),
+                    '_uuid'            => $this->get_guid(),
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $json = $this->request($url, 'POST', $post_data);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function save($shortcode){
+            
+            if($shortcode != null){
+                
+                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/save/';
+                
+                $post_data = [
+                    'module_name' => 'feed_timeline',
+                    'radio_type'  => 'wifi-none',
+                    '_csrftoken'  => $this->get_csrftoken(),
+                    '_uuid'       => $this->get_guid(),
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $json = $this->request($url, 'POST', $post_data);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function unsave($shortcode){
+            
+            if($shortcode != null){
+                
+                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/unsave/';
+                
+                $post_data = [
+                    'module_name' => 'feed_timeline',
+                    'radio_type'  => 'wifi-none',
+                    '_csrftoken'  => $this->get_csrftoken(),
+                    '_uuid'       => $this->get_guid(),
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $json = $this->request($url, 'POST', $post_data);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function send_comment_post($shortcode, $comment = 'hi'){
+            
+            if($shortcode != null){
+                
+                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/comment/';
+                
+                $post_data = [
+                    'comment_text'      => $comment,
+                    'container_module'  => 'comments_v2_feed_contextual_profile',
+                    'delivery_class'    => 'organic',
+                    'idempotence_token' => '455f2f7e-7abf-4236-b527-8f422f84bab0',
+                    '_csrftoken'        => $this->get_csrftoken(),
+                    '_uuid'             => $this->get_guid(),
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $json = $this->request($url, 'POST', $post_data);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function delete_comment_post($shortcode = null, $comment_id = null, $auto_find_comment_id = false){
+            
+            if($shortcode != null){
+                
+                if($auto_find_comment_id == true){
+                    $get_comment_posts = $this->get_comment_post($shortcode);
+                    $me_user_id        = $this->functions->user->get_user_id();
+                    $comment_id        = 0;
+                    foreach($get_comment_posts->comments as $comment){
+                        if($me_user_id == $comment->user_id){
+                            $comment_id = $comment->pk;
+                            break;
+                        }
+                    }
+                    if($comment_id == 0){
+                        return false;
+                    }
+                }
+                
+                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/comment/bulk_delete/';
+                
+                $post_data = [
+                    'comment_ids_to_delete' => $comment_id,
+                    'container_module'      => 'comments_v2_feed_contextual_profile',
+                    '_csrftoken'            => $this->get_csrftoken(),
+                    '_uuid'                 => $this->get_guid(),
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $json = $this->request($url, 'POST', $post_data);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function share_media($shortcode = null, $username = null){
+            
+            if($shortcode != null and $username != null){
+                
+                $get_thread_id = $this->functions->user->get_create_inbox_thread($username);
+                
+                $url = 'https://i.instagram.com/api/v1/direct_v2/threads/broadcast/media_share/?media_type=video';
+                
+                $post_data = [
+                    'action'           => 'send_item',
+                    'is_shh_mode'      => '0',
+                    'send_attribution' => 'comments_v2_feed_contextual_profile',
+                    'thread_ids'       => '['.$get_thread_id->thread->thread_id.']',
+                    'media_id'         => $shortcode,
+                    '_csrftoken'       => $this->get_csrftoken(),
+                    '_uuid'            => $this->get_guid(),
+                ];
+                
+                $json = $this->request($url, 'POST', $post_data);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
             
         }
         
