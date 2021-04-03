@@ -166,6 +166,10 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 | Giriş Yapmış Kullanıcı İstatistikleri  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Giriş Yapmış Kullanıcının En Az Etkileşimde Olduğu Kullanıcılar  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Giriş Yapmış Kullanıcının En Çok Gördüğü Kullanıcılar  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kullanıcı Bildirim Listesi Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kullanıcı Mesaj İsteklerini Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kullanıcı Mesaj Kutusunu Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kullanıcı Takipçilerini Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 
 ## Paylaşım İşlemleri
 
@@ -194,11 +198,12 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 | Kalp Atma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Görsel Atma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 
-<!-- CONTRIBUTING -->
+## Akıllı İşlemler
 
-## Katkı Sağlayanlar
-
-<!-- LICENSE -->
+| İşlemler  | Çalışıyor | Örnek Dosya |
+| ------------- | ------------- | ------------- |
+| Sahte Takipçi Tespiti  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Sahte Takip Edilen Tespiti  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 
 ## Lisans
 

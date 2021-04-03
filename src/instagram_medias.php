@@ -235,7 +235,7 @@
             
         }
         
-        public function share_media($shortcode = null, $username = null){
+        public function share_media_inbox($shortcode = null, $username = null){
             
             if($shortcode != null and $username != null){
                 

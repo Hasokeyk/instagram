@@ -453,6 +453,63 @@
             
         }
         
+        public function get_my_notification(){
+            
+            $url  = 'https://i.instagram.com/api/v1/news/inbox/?mark_as_seen=false&timezone_offset=10800&push_disabled=true';
+            $json = $this->request($url);
+            $json = json_decode($json['body']);
+            
+            return $json;
+            
+        }
+        
+        public function get_my_pending_inbox(){
+            
+            $url  = 'https://i.instagram.com/api/v1/direct_v2/pending_inbox/?visual_message_return_type=unseen&persistentBadging=true&push_disabled=true';
+            $json = $this->request($url);
+            $json = json_decode($json['body']);
+            
+            return $json;
+            
+        }
+        
+        public function get_my_inbox(){
+            
+            $url  = 'https://i.instagram.com/api/v1/direct_v2/inbox/?visual_message_return_type=unseen&thread_message_limit=100&persistentBadging=true&limit=20&push_disabled=true&fetch_reason=manual_refresh';
+            $json = $this->request($url);
+            $json = json_decode($json['body']);
+            
+            return $json;
+            
+        }
+        
+        public function get_my_followers(){
+            
+            $url  = 'https://i.instagram.com/api/v1/friendships/44433622125/following/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true&rank_token=4c6947e0-bebe-4f69-a7bf-24be28dc4990';
+            $json = $this->request($url);
+            $json = json_decode($json['body']);
+            
+            return $json;
+            
+        }
+        
+        public function get_friendships_status_by_username($username = null){
+            
+            if($username != null){
+                $user_id = $this->get_user_id($username);
+                $url       = 'https://i.instagram.com/api/v1/friendships/show_many/';
+                $post_data = [
+                    'user_ids' => $user_id,
+                ];
+                $json      = $this->request($url, 'POST', $post_data);
+                $json      = json_decode($json['body']);
+                return $json;
+                
+            }
+            return false;
+            
+        }
+        
         private function generate_client_context(){
             return (round(microtime(true) * 1000) << 22 | random_int(PHP_INT_MIN, PHP_INT_MAX) & 4194303) & PHP_INT_MAX;
         }
