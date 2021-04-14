@@ -83,12 +83,17 @@
                 mkdir($this->cache_path.$this->username, 777);
             }
             
+            if(!file_exists($this->cache_path.$this->username.'/users/')){
+                mkdir($this->cache_path.$this->username.'/users/', 777);
+            }
+            
             $cache_file_path = $this->cache_path.$this->username.'/';
-            $cache_file      = $cache_file_path.($this->cache_prefix.'-'.$name.'.json');
+            $cache_file      = $cache_file_path.($name.'.json');
             
             if(file_exists($cache_file) and time() <= strtotime('+'.$this->cache_time.' minute', filemtime($cache_file))){
                 return json_decode(file_get_contents($cache_file));
             }
+            
             else if($desc !== false){
                 if($json == true){
                     file_put_contents($cache_file, $desc);
@@ -154,14 +159,8 @@
                     $res = $client->get($url);
                 }
                 
-                /*
-                $res = $client->request($type, $url, [
-                    'headers' => $headers,
-                    $data??null,
-                ]);
-                */
-                
                 return [
+                    'status'  => 'ok',
                     'headers' => $res->getHeaders(),
                     'body'    => $res->getBody()->getContents(),
                 ];
@@ -202,7 +201,7 @@
             $username       = $username??$this->username;
             $this->username = $username;
             
-            $cookie = $this->cache($username.'-sessionid');
+            $cookie = $this->cache('sessionid');
             if($cookie == false){
                 $session_id = 0;
             }

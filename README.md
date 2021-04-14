@@ -157,53 +157,56 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 
 | İşlemler  | Çalışıyor | Örnek Dosya |
 | ------------- | ------------- | ------------- |
-| Kullanıcı Girişi  | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/instagram-user-login.php) | 
-| Giriş Yapmış Kullanıcı Bilgisi Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Giriş Yapmış Kullanıcı İstatistik Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kullanıcı Girişi  | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) | 
+| Giriş Yapmış Kullanıcı Bilgisi Getirme  | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php) |
+| Giriş Yapmış Kullanıcı İstatistik Getirme  | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php) |
+| Giriş Yapmış Kullanıcının En Az Etkileşimde Olduğu Kullanıcılar  | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Giriş Yapmış Kullanıcının En Çok Gördüğü Kullanıcılar  | :heavy_check_mark: | [instagram-user-me-most-seen-in-feed.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Profil Resmi Değiştirme  | :heavy_check_mark: | [instagram-user-change-profil-pic.php](https://github.com/Hasokeyk/instagram/blob/main/examples/instagram-user-change-profil-pic.php) |
-| Kullanıcı Takip Etme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Kullanıcı Takipten Çıkma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Giriş Yapmış Kullanıcı İstatistikleri  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Giriş Yapmış Kullanıcının En Az Etkileşimde Olduğu Kullanıcılar  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Giriş Yapmış Kullanıcının En Çok Gördüğü Kullanıcılar  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Kullanıcı Bildirim Listesi Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Kullanıcı Mesaj İsteklerini Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Kullanıcı Mesaj Kutusunu Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Kullanıcı Takipçilerini Getirme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kullanıcı Takip Etme  | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/instagram-user-follow.php) |
+| Kullanıcı Takipten Çıkma  | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/instagram-user-follow.php) |
+| Kullanıcının Kendisini Takipten Çıkma  | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/instagram-user-follow.php) |
+| Kullanıcı Bildirim Listesi Getirme  | :heavy_check_mark: | [instagram-user-me-notification.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kullanıcı Mesaj İsteklerini Getirme  | :heavy_check_mark: | [instagram-user-my-pending-inbox.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kullanıcı Mesaj Kutusunu Getirme  | :heavy_check_mark: | [instagram-user-my-inbox.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kullanıcı Takipçilerini Getirme  | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşım Getirme  | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/instagram-user-get-posts.php) |
+
 
 ## Paylaşım İşlemleri
 
 | İşlemler  | Çalışıyor | Örnek Dosya |
 | ------------- | ------------- | ------------- |
-| Paylaşım Getirme  | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/instagram-user-get-posts.php) |
 | Paylaşım İstatistikleri Getirme  | :heavy_check_mark: | [instagram-user-get-posts-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/instagram-user-get-posts-statistics.php) |
 | Görsel Paylaşma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Video Paylaşma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Story Paylaşma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Carousel Paylaşma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Paylaşım Beğenme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Paylaşım Beğenmekten Çıkma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Paylaşım Kayıt Etme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Paylaşım Kayıt Etmekten Çıkma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Paylaşıma Yorum Yazma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Paylaşıma Yorum Silme  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Paylaşım Mesaj Olarak Yollama  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşım Beğenme  | :heavy_check_mark: | [instagram-media-like.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşım Beğenmekten Çıkma  | :heavy_check_mark: | [instagram-media-unlike.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşım Kayıt Etme  | :heavy_check_mark: | [instagram-media-save.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşım Kayıt Etmekten Çıkma  | :heavy_check_mark: | [instagram-media-unsave.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşıma Yorum Yazma  | :heavy_check_mark: | [instagram-media-send-comment.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşıma Yorum Silme  | :heavy_check_mark: | [instagram-media-del-comment.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Paylaşım Mesaj Olarak Yollama  | :heavy_check_mark: | [instagram-media-send-media-inbox.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 
 ## Mesajlaşma İşlemleri
 
 | İşlemler  | Çalışıyor | Örnek Dosya |
 | ------------- | ------------- | ------------- |
-| Yazı Olarak Mesaj Atma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Yazı Olarak Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 | Link Olarak Mesaj Atma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Kalp Atma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Görsel Atma  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Kalp Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Görsel Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 
 ## Akıllı İşlemler
 
 | İşlemler  | Çalışıyor | Örnek Dosya |
 | ------------- | ------------- | ------------- |
-| Sahte Takipçi Tespiti  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
-| Sahte Takip Edilen Tespiti  | :heavy_check_mark: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Sahte Takipçi Tespiti  | :heavy_check_mark: | [instagram-smart-get-fake-followers-profile.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Sahte Takip Edilen Tespiti  | :heavy_check_mark: | [instagram-smart-get-fake-following-profile.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Takip Etmeniz Gereken Hesaplar  | :heavy_check_mark: | [instagram-smart-get-my-must-follow.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
+| Gizli Takipçileriniz  | :heavy_check_mark: | [instagram-smart-get-my-secret-followers.php](https://github.com/Hasokeyk/instagram/tree/main/examples) |
 
 ## Lisans
 

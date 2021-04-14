@@ -69,7 +69,7 @@
             $password       = $password??$this->password;
             $this->username = $username;
             
-            $cookie = $this->cache($username.'-sessionid');
+            $cookie = $this->cache('sessionid');
             if($cookie == false){
                 
                 $url       = 'https://i.instagram.com/api/v1/accounts/login/';
@@ -108,13 +108,12 @@
             if($json != null){
                 $json_body = json_decode($json['body']);
                 if($json_body->status == 'ok'){
-                    $username = $json_body->logged_in_user->username;
-                    $cookie   = $this->cache($username.'-sessionid');
+                    $cookie   = $this->cache('sessionid');
                     if($cookie == false){
                         foreach($json['headers']['Set-Cookie'] as $cookie){
                             if($this->start_with($cookie, 'sessionid')){
                                 preg_match('|sessionid=(.*?);|is', $cookie, $session_id);
-                                $this->cache($username.'-sessionid', [$session_id[1]]);
+                                $this->cache('sessionid', [$session_id[1]]);
                                 break;
                             }
                         }
@@ -126,24 +125,18 @@
         }
         
         public function login_control($username = null){
-            
-            $this->username = $username??$this->username;
-            
             try{
-                
-                $url         = 'https://i.instagram.com/api/v1/direct_v2/get_presence/';
+                $url         = 'https://i.instagram.com/api/v1/accounts/get_resurrection_days/';
                 $result      = $this->request($url);
                 $result_body = json_decode($result['body']);
                 if($result_body->status == 'ok'){
                     return true;
                 }
-                
                 return false;
             }
             catch(\Exception $err){
                 return false;
             }
-            
         }
         
         private function encrypt($password){

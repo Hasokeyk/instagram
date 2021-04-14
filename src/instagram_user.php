@@ -105,16 +105,20 @@
             
         }
         
-        public function get_user_info_by_id($user_id = null){
+        public function get_user_info_show($user_id = null){
             
-            if($user_id != null){
-                
-                $url = 'https://i.instagram.com/api/v1/users/'.$user_id.'/full_detail_info/';
-                
-                $json = $this->request($url);
-                $json = json_decode($json['body']);
-                
-                return $json;
+            $cache = $this->cache('users/'.$user_id);
+            if(!$cache){
+                if($user_id != null){
+                    $url  = 'https://i.instagram.com/api/v1/friendships/show/'.$user_id.'/';
+                    $json = $this->request($url);
+                    $json = json_decode($json['body']);
+                    $this->cache('users/'.$user_id, $json);
+                    return $json;
+                }
+            }
+            else{
+                return $cache;
             }
             
             return false;
@@ -123,14 +127,92 @@
         
         public function get_user_info_by_username($username = null){
             
-            if($username != null){
-                
-                $url = 'https://i.instagram.com/api/v1/users/'.$username.'/full_detail_info/';
-                
-                $json = $this->request($url);
+            $username = $username??$this->username;
+            $cache    = $this->cache('users/'.$username);
+            if(!$cache){
+                if($username != null){
+                    $url  = 'https://i.instagram.com/api/v1/users/'.$username.'/full_detail_info/';
+                    $json = $this->request($url);
+                    if($json['status'] == 'ok'){
+                        $json = json_decode($json['body']);
+                        $this->cache('users/'.$username, $json);
+                        return $json;
+                    }
+                    else{
+                        return $json;
+                    }
+                    
+                }
+            }
+            else{
+                return $cache;
+            }
+            
+            return false;
+            
+        }
+        
+        public function get_multi_user_friendship_show($user_ids = []){
+            
+            if($user_ids != null){
+                $user_ids = implode(',',$user_ids);
+                $url = 'https://i.instagram.com/api/v1/friendships/show_many/';
+                $post_data = [
+                    'user_ids' => $user_ids
+                ];
+                $json = $this->request($url,'POST',$post_data);
                 $json = json_decode($json['body']);
-                
                 return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function get_my_surfaces(){
+            $cache = $this->cache('surface');
+            if(!$cache){
+                $username = $this->username;
+                if($username != null){
+                    $url  = 'https://i.instagram.com/api/v1/scores/bootstrap/users/?surfaces=%5B%22coefficient_direct_recipients_ranking_variant_2%22%2C%22coefficient_rank_recipient_user_suggestion%22%2C%22coefficient_besties_list_ranking%22%2C%22coefficient_ios_section_test_bootstrap_ranking%22%2C%22autocomplete_user_list%22%5D';
+                    $json = $this->request($url);
+                    if($json['status'] == 'ok'){
+                        $json = json_decode($json['body']);
+                        $this->cache('surface', $json);
+                        return $json;
+                    }
+                    else{
+                        return $json;
+                    }
+                }
+            }
+            else{
+                return $cache;
+            }
+            
+            return false;
+            
+        }
+        
+        public function get_users_score(){
+            $cache = $this->cache('user_score');
+            if(!$cache){
+                $username = $this->username;
+                if($username != null){
+                    $url  = 'https://i.instagram.com/api/v1/banyan/banyan/?views=%5B%22direct_user_search_keypressed%22%2C%22group_stories_share_sheet%22%2C%22reshare_share_sheet%22%2C%22direct_inbox_active_now%22%2C%22story_share_sheet%22%2C%22forwarding_recipient_sheet%22%2C%22direct_user_search_nullstate%22%2C%22threads_people_picker%22%5D';
+                    $json = $this->request($url);
+                    if($json['status'] == 'ok'){
+                        $json = json_decode($json['body']);
+                        $this->cache('user_score', $json);
+                        return $json;
+                    }
+                    else{
+                        return $json;
+                    }
+                }
+            }
+            else{
+                return $cache;
             }
             
             return false;
@@ -496,7 +578,7 @@
         public function get_friendships_status_by_username($username = null){
             
             if($username != null){
-                $user_id = $this->get_user_id($username);
+                $user_id   = $this->get_user_id($username);
                 $url       = 'https://i.instagram.com/api/v1/friendships/show_many/';
                 $post_data = [
                     'user_ids' => $user_id,

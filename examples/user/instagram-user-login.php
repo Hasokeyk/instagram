@@ -2,7 +2,7 @@
     
     use instagram\instagram;
     
-    require "../vendor/autoload.php";
+    require "../../vendor/autoload.php";
     
     $username = 'username';
     $password = 'password';
@@ -18,7 +18,7 @@
     //LOGIN CONTROL
     $login_control = $instagram->login->login_control();
     if($login_control){
-        echo 'Login True';
+        echo 'Login is still';
     }else{
         echo 'Login False';
     }

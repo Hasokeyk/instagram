@@ -68,4 +68,66 @@
             
         }
         
+        public function get_my_must_follow(){
+        
+            $surfaces = $this->functions->user->get_my_surfaces();
+            $surfaces_user_ids = [];
+            foreach($surfaces->surfaces as $surface){
+                foreach($surface->scores as $user_id => $score){
+                    $surfaces_user_ids[] = $user_id;
+                }
+            }
+            
+            $must_follow = (object) [];
+            $friends_ship_info = $this->functions->user->get_multi_user_friendship_show(array_values($surfaces_user_ids));
+            foreach($friends_ship_info->friendship_statuses as $user_id => $info){
+                if(!$info->following and $info->outgoing_request == false){
+                    
+                    foreach($surfaces->users as $user){
+                        if($user->pk == $user_id){
+                            $must_follow->$user_id = (object) [
+                                'user' => $user,
+                                'friendships' => $info,
+                            ];
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            
+            return $must_follow;
+        }
+        
+        public function get_my_secret_followers(){
+        
+            $surfaces = $this->functions->user->get_my_surfaces();
+            $surfaces_user_ids = [];
+            foreach($surfaces->surfaces as $surface){
+                foreach($surface->scores as $user_id => $score){
+                    $surfaces_user_ids[] = $user_id;
+                }
+            }
+            
+            $must_follow = (object) [];
+            $friends_ship_info = $this->functions->user->get_multi_user_friendship_show(array_values($surfaces_user_ids));
+            foreach($friends_ship_info->friendship_statuses as $user_id => $info){
+                if(!$info->following and $info->outgoing_request == false){
+                    
+                    foreach($surfaces->users as $user){
+                        if($user->pk == $user_id){
+                            $must_follow->$user_id = (object) [
+                                'user' => $user,
+                                'friendships' => $info,
+                            ];
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            
+            return $must_follow;
+        }
+        
     }

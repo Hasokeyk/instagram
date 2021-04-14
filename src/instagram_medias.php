@@ -14,11 +14,11 @@
             $this->functions = $functions;
         }
         
-        public function get_post_likes($shortcode = null){
+        public function get_post_likes($post_id = null){
             
-            if($shortcode != null){
+            if($post_id != null){
                 
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/likers/';
+                $url = 'https://i.instagram.com/api/v1/media/'.$post_id.'/likers/';
                 
                 $json = $this->request($url);
                 $json = json_decode($json['body']);
@@ -30,11 +30,27 @@
             
         }
         
-        public function get_comment_post($shortcode = null){
+        public function get_comment_post($post_id = null){
             
-            if($shortcode != null){
+            if($post_id != null){
                 
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/comments/';
+                $url = 'https://i.instagram.com/api/v1/media/'.$post_id.'/comments/';
+                
+                $json = $this->request($url);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function get_permalink_by_shortcode($post_id = null){
+            
+            if($post_id != null){
+                
+                $url = 'https://i.instagram.com/api/v1/media/'.$post_id.'/permalink/?share_to_app=share_sheet';
                 
                 $json = $this->request($url);
                 $json = json_decode($json['body']);
@@ -68,18 +84,18 @@
             return $result;
         }
         
-        public function like($shortcode){
+        public function like($post_id){
             
-            if($shortcode != null){
+            if($post_id != null){
                 
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/like/';
+                $url = 'https://i.instagram.com/api/v1/media/'.$post_id.'/like/';
                 
                 $post_data = [
                     'container_module' => 'feed_contextual_profile',
                     'delivery_class'   => 'organic',
                     'radio_type'       => 'wifi-none',
                     'feed_position'    => '0',
-                    'media_id'         => $shortcode,
+                    'media_id'         => $post_id,
                     '_csrftoken'       => $this->get_csrftoken(),
                     '_uuid'            => $this->get_guid(),
                 ];
@@ -95,18 +111,18 @@
             
         }
         
-        public function unlike($shortcode){
+        public function unlike($post_id){
             
-            if($shortcode != null){
+            if($post_id != null){
                 
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/unlike/';
+                $url = 'https://i.instagram.com/api/v1/media/'.$post_id.'/unlike/';
                 
                 $post_data = [
                     'container_module' => 'feed_contextual_profile',
                     'delivery_class'   => 'organic',
                     'radio_type'       => 'wifi-none',
                     'feed_position'    => '0',
-                    'media_id'         => $shortcode,
+                    'media_id'         => $post_id,
                     '_csrftoken'       => $this->get_csrftoken(),
                     '_uuid'            => $this->get_guid(),
                 ];
@@ -122,11 +138,11 @@
             
         }
         
-        public function save($shortcode){
+        public function save($post_id){
             
-            if($shortcode != null){
+            if($post_id != null){
                 
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/save/';
+                $url = 'https://i.instagram.com/api/v1/media/'.$post_id.'/save/';
                 
                 $post_data = [
                     'module_name' => 'feed_timeline',
@@ -146,11 +162,11 @@
             
         }
         
-        public function unsave($shortcode){
+        public function unsave($post_id){
             
-            if($shortcode != null){
+            if($post_id != null){
                 
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/unsave/';
+                $url = 'https://i.instagram.com/api/v1/media/'.$post_id.'/unsave/';
                 
                 $post_data = [
                     'module_name' => 'feed_timeline',
@@ -170,11 +186,11 @@
             
         }
         
-        public function send_comment_post($shortcode, $comment = 'hi'){
+        public function send_comment_post($post_id, $comment = 'hi'){
             
-            if($shortcode != null){
+            if($post_id != null){
                 
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/comment/';
+                $url = 'https://i.instagram.com/api/v1/media/'.$post_id.'/comment/';
                 
                 $post_data = [
                     'comment_text'      => $comment,
@@ -196,12 +212,12 @@
             
         }
         
-        public function delete_comment_post($shortcode = null, $comment_id = null, $auto_find_comment_id = false){
+        public function delete_comment_post($post_id = null, $comment_id = null, $auto_find_comment_id = false){
             
-            if($shortcode != null){
+            if($post_id != null){
                 
                 if($auto_find_comment_id == true){
-                    $get_comment_posts = $this->get_comment_post($shortcode);
+                    $get_comment_posts = $this->get_comment_post($post_id);
                     $me_user_id        = $this->functions->user->get_user_id();
                     $comment_id        = 0;
                     foreach($get_comment_posts->comments as $comment){
@@ -215,7 +231,7 @@
                     }
                 }
                 
-                $url = 'https://i.instagram.com/api/v1/media/'.$shortcode.'/comment/bulk_delete/';
+                $url = 'https://i.instagram.com/api/v1/media/'.$post_id.'/comment/bulk_delete/';
                 
                 $post_data = [
                     'comment_ids_to_delete' => $comment_id,
@@ -235,9 +251,9 @@
             
         }
         
-        public function share_media_inbox($shortcode = null, $username = null){
+        public function share_media_inbox($post_id = null, $username = null){
             
-            if($shortcode != null and $username != null){
+            if($post_id != null and $username != null){
                 
                 $get_thread_id = $this->functions->user->get_create_inbox_thread($username);
                 
@@ -248,7 +264,7 @@
                     'is_shh_mode'      => '0',
                     'send_attribution' => 'comments_v2_feed_contextual_profile',
                     'thread_ids'       => '['.$get_thread_id->thread->thread_id.']',
-                    'media_id'         => $shortcode,
+                    'media_id'         => $post_id,
                     '_csrftoken'       => $this->get_csrftoken(),
                     '_uuid'            => $this->get_guid(),
                 ];
