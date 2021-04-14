@@ -7,14 +7,13 @@
     $username = 'username';
     $password = 'password';
     
-    $instagram = new instagram($username, $password);
+    $instagram = new instagram($username,$password);
     $instagram->login->login();
     
     $login = $instagram->login->login_control();
     if($login){
-        $user = $instagram->user->get_my_pending_inbox();
-        print_r($user);
-    }
-    else{
+        $post = $instagram->statistics->get_post_insights('2546428212937660604');
+        print_r($post);
+    }else{
         echo 'Login Fail';
     }

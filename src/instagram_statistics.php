@@ -37,11 +37,11 @@
         }
         
         public function get_post_insights($post_id = null){
-            
+        
             $cache = $this->cache($post_id);
             if($cache == false){
                 if($post_id != null){
-                    
+                
                     $post_param = [
                         'surface'        => 'post',
                         'doc_id'         => '3808023159239182',
@@ -52,13 +52,13 @@
                         'strip_defaults' => 'true',
                         'query_params'   => ('{"query_params":{"access_token":"","id":"'.$post_id.'"}}'),
                     ];
-                    
+                
                     $link                   = "https://i.instagram.com/api/v1/ads/graphql/";
                     $user_general_statistic = $this->request($link, 'POST', $post_param);
-                    
+                
                     $user_general_statistic = json_decode($user_general_statistic['body']);
                     $user_general_statistic = $user_general_statistic->data->instagram_post_by_igid->inline_insights_node->metrics;
-                    
+                
                     if($user_general_statistic != null){
                         $this->cache($post_id, $user_general_statistic);
                     }
@@ -73,7 +73,7 @@
             else{
                 $user_general_statistic = $cache;
             }
-            
+        
             return $user_general_statistic;
         }
         
