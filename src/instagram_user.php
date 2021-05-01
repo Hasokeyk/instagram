@@ -155,13 +155,13 @@
         public function get_multi_user_friendship_show($user_ids = []){
             
             if($user_ids != null){
-                $user_ids = implode(',',$user_ids);
-                $url = 'https://i.instagram.com/api/v1/friendships/show_many/';
+                $user_ids  = implode(',', $user_ids);
+                $url       = 'https://i.instagram.com/api/v1/friendships/show_many/';
                 $post_data = [
-                    'user_ids' => $user_ids
+                    'user_ids' => $user_ids,
                 ];
-                $json = $this->request($url,'POST',$post_data);
-                $json = json_decode($json['body']);
+                $json      = $this->request($url, 'POST', $post_data);
+                $json      = json_decode($json['body']);
                 return $json;
             }
             
@@ -591,6 +591,36 @@
             return false;
             
         }
+        
+        public function get_former_usernames($username = null){
+            
+            $username = $username??$this->username;
+            $user_id = $this->get_user_id($username);
+            $url     = 'https://i.instagram.com/api/v1/users/'.$user_id.'/former_usernames/';
+            $json    = $this->request($url, 'GET');
+            $json    = json_decode($json['body']);
+            if(isset($json->status) and $json->status == 'ok'){
+                return $json;
+            }
+            return false;
+            
+        }
+        
+        /*
+        public function get_accounts_with_shared_followers($username = null){
+            
+            $username = $username??$this->username;
+            $user_id = $this->get_user_id($username);
+            $url     = 'https://i.instagram.com/api/v1/users/'.$user_id.'/accounts_with_shared_followers/';
+            $json    = $this->request($url, 'POST');
+            $json    = json_decode($json['body']);
+            if(isset($json->status) and $json->status == 'ok'){
+                return $json;
+            }
+            return false;
+            
+        }
+        */
         
         private function generate_client_context(){
             return (round(microtime(true) * 1000) << 22 | random_int(PHP_INT_MIN, PHP_INT_MAX) & 4194303) & PHP_INT_MAX;

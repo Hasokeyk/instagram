@@ -70,7 +70,7 @@
                 "upload_id" => $upload_id,
                 "xsharing_user_ids" => "[]",
                 "image_compression" => json_encode($image_comp),
-                "original_photo_pdq_hash" => ""//todo add PDQ Hashing algorithm
+                "original_photo_pdq_hash" => ""
             ];
             return json_encode($data);
         }

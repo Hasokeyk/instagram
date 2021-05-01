@@ -279,4 +279,80 @@
             
         }
         
+        public function share_photo($image_path = null, $desc = null){
+            
+            $upload_id         = $this->functions->upload->get_upload_id();
+            $upload_session_id = $this->functions->upload->get_upload_session_id($upload_id);
+            $url               = 'https://i.instagram.com/rupload_igphoto/'.$upload_session_id;
+            
+            $file      = file_get_contents($image_path);
+            $file_size = strlen($file);
+            
+            $header = [
+                "Content-Type"               => "application/octet-stream",
+                "X-Entity-Type"              => "image/jpeg",
+                "X-Entity-Name"              => $upload_session_id,
+                "Offset"                     => "0",
+                "X-Entity-Length"            => $file_size,
+                "Cookie"                     => $this->create_cookie(),
+                "X-Instagram-Rupload-Params" => $this->functions->upload->rupload_params($upload_id),
+            ];
+            
+            $json = $this->request($url, 'UPLOAD', ['body' => $file], $header);
+            $json = json_decode($json['body']);
+            if($json->status == 'ok'){
+                $result = $this->_share_photo($upload_id, $desc);
+                print_r($result);
+                if($result->status == 'ok'){
+                    return true;
+                }
+            }
+            
+            return false;
+            
+        }
+        
+        private function _share_photo($upload_id = null, $desc = null){
+            
+            $url       = 'https://i.instagram.com/api/v1/media/configure/';
+            $post_data = [
+                "scene_capture_type"         => "",
+                "timezone_offset"            => "10800",
+                "_csrftoken"                 => "L3toHeMiinPTPxRkOST8feCLY0gIa61x",
+                "media_folder"               => "Camera",
+                "source_type"                => "4",
+                "_uid"                       => "44433622125",
+                "device_id"                  => $this->get_device_id(),
+                "_uuid"                      => $this->get_guid(),
+                "creation_logger_session_id" => "cf4fea1e-a304-44d9-af56-62914c9d728e",
+                "caption"                    => $desc,
+                "upload_id"                  => $upload_id,
+                "multi_sharing"              => "1",
+                "device"                     => [
+                    "manufacturer"    => "Google",
+                    "model"           => "google+Pixel+2",
+                    "android_version" => 22,
+                    "android_release" => "5.1.1",
+                ],
+                "edits"                      => [
+                    "crop_original_size" => [
+                        640,
+                        480,
+                    ],
+                    "crop_center"        => [
+                        0,
+                        -0,
+                    ],
+                    "crop_zoom"          => 1.3333334,
+                ],
+                "extra"                      => [
+                    "source_width"  => 640,
+                    "source_height" => 480,
+                ],
+            ];
+            $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+            $json      = $this->request($url, 'POST', $post_data);
+            return json_decode($json['body']);
+            
+        }
     }
