@@ -93,7 +93,6 @@
             if(file_exists($cache_file) and time() <= strtotime('+'.$this->cache_time.' minute', filemtime($cache_file))){
                 return json_decode(file_get_contents($cache_file));
             }
-            
             else if($desc !== false){
                 if($json == true){
                     file_put_contents($cache_file, $desc);
@@ -138,24 +137,26 @@
                 'X-IG-Device-ID'       => $this->guid,
                 'X-IG-Android-ID'      => $this->device_id,
                 'User-Agent'           => $this->user_agent,
+                'Authorization'        => $this->cache('Bearer'),
             ];
             
-            $headers = $header??$headers_default;
+            $headers = $header ?? $headers_default;
             
             if($user_cookie == true){
-                $cookie            = $cookie??$this->create_cookie(false, $user_cookie);
+                $cookie            = $cookie ?? $this->create_cookie(false, $user_cookie);
                 $headers['Cookie'] = $cookie;
             }
             
             try{
                 $client = new \GuzzleHttp\Client([
-                    'verify' => false,
+                    'verify'  => false,
                     'headers' => $headers,
                 ]);
                 
                 if($type == 'POST'){
-                    $res = $client->post($url,$data);
-                }else{
+                    $res = $client->post($url, $data);
+                }
+                else{
                     $res = $client->get($url);
                 }
                 
@@ -198,7 +199,7 @@
         
         public function get_session_id($username = null){
             
-            $username       = $username??$this->username;
+            $username       = $username ?? $this->username;
             $this->username = $username;
             
             $cookie = $this->cache('sessionid');

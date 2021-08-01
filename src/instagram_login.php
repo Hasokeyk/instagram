@@ -75,7 +75,7 @@
                 $url       = 'https://i.instagram.com/api/v1/accounts/login/';
                 $password  = $this->encrypt($password);
                 $post_data = [
-                    'jazoest'             => '22250',
+                    'jazoest'             => '22356',
                     'country_codes'       => '[{"country_code":"90","source":["sim","network","default","sim"]}]',
                     'phone_id'            => $this->get_phone_id(),
                     'enc_password'        => $password,
@@ -110,12 +110,11 @@
                 if($json_body->status == 'ok'){
                     $cookie   = $this->cache('sessionid');
                     if($cookie == false){
-                        foreach($json['headers']['Set-Cookie'] as $cookie){
-                            if($this->start_with($cookie, 'sessionid')){
-                                preg_match('|sessionid=(.*?);|is', $cookie, $session_id);
-                                $this->cache('sessionid', [$session_id[1]]);
-                                break;
-                            }
+                        foreach($json['headers']['ig-set-authorization'] as $cookie){
+                            $this->cache('Bearer', $cookie);
+                            preg_match('|Bearer IGT:(.*):(.*)|isu', $cookie,$session_json);
+                            $session_json = json_decode(base64_decode($session_json[2]));
+                            $this->cache('sessionid', $session_json->sessionid);
                         }
                     }
                     return true;
