@@ -198,6 +198,10 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 | Link Olarak Mesaj Atma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) |
 | Kalp Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
 | Görsel Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Alevli Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Hediyeli Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Konfeti Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Kalplli Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
 
 ## Akıllı İşlemler
 

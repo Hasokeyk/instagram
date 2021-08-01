@@ -17,6 +17,26 @@
         $user = $instagram->user->send_inbox_text('yazilimvegirisim','Hi! How are you?');
         print_r($user);
         //INBOX SEND TEXT
+    
+        //INBOX SEND TEXT FIRE
+        $user = $instagram->user->send_inbox_text_fire('yazilimvegirisim','Hi! How are you?');
+        print_r($user);
+        //INBOX SEND TEXT FIRE
+        
+        //INBOX SEND TEXT GIFT
+        $user = $instagram->user->send_inbox_text_gift('yazilimvegirisim','Hi! How are you?');
+        print_r($user);
+        //INBOX SEND TEXT GIFT
+        
+        //INBOX SEND TEXT CONFETTI
+        $user = $instagram->user->send_inbox_text_confetti('yazilimvegirisim','Hi! How are you?');
+        print_r($user);
+        //INBOX SEND TEXT CONFETTI
+        
+        //INBOX SEND TEXT HEART
+        $user = $instagram->user->send_inbox_text_heart('yazilimvegirisim','Hi! How are you?');
+        print_r($user);
+        //INBOX SEND TEXT HEART
         
         //INBOX SEND IMAGE
         $file_path = 'image.jpg';

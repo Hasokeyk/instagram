@@ -16,7 +16,7 @@
         
         public function get_user_id($username = null){
             
-            $username = $username??$this->username;
+            $username = $username ?? $this->username;
             if($username != null){
                 
                 $url = 'https://www.instagram.com/web/search/topsearch/?query='.$username;
@@ -127,7 +127,7 @@
         
         public function get_user_info_by_username($username = null){
             
-            $username = $username??$this->username;
+            $username = $username ?? $this->username;
             $cache    = $this->cache('users/'.$username);
             if(!$cache){
                 if($username != null){
@@ -303,10 +303,10 @@
             
         }
         
-        public function send_inbox_text($username, $text = 'Hello'){
+        public function send_inbox_text($username, $text = 'Hello', $style = null){
             
             if($username != null){
-                
+    
                 $user_id = $this->get_user_id($username);
                 $url     = 'https://i.instagram.com/api/v1/direct_v2/threads/broadcast/text/';
                 //$thread_id = $this->get_inbox_user_thread($username);
@@ -325,10 +325,54 @@
                     'offline_threading_id' => $this->generate_client_context(),
                 ];
                 
+                if($style != null){
+                    $post_data['power_up_data'] = '{"style":'.$style.'}';
+                }
+                
                 $json = $this->request($url, 'POST', $post_data);
                 $json = json_decode($json['body']);
                 
                 return $json;
+            }
+            
+            return false;
+            
+        }
+        
+        public function send_inbox_text_heart($username, $text = 'Hello'){
+            
+            if($username != null){
+                return $this->send_inbox_text($username,$text,1);
+            }
+            
+            return false;
+            
+        }
+        
+        public function send_inbox_text_gift($username, $text = 'Hello'){
+            
+            if($username != null){
+                return $this->send_inbox_text($username,$text,2);
+            }
+            
+            return false;
+            
+        }
+        
+        public function send_inbox_text_confetti($username, $text = 'Hello'){
+            
+            if($username != null){
+                return $this->send_inbox_text($username,$text,3);
+            }
+            
+            return false;
+            
+        }
+        
+        public function send_inbox_text_fire($username, $text = 'Hello'){
+            
+            if($username != null){
+                return $this->send_inbox_text($username,$text,4);
             }
             
             return false;
@@ -594,11 +638,11 @@
         
         public function get_former_usernames($username = null){
             
-            $username = $username??$this->username;
-            $user_id = $this->get_user_id($username);
-            $url     = 'https://i.instagram.com/api/v1/users/'.$user_id.'/former_usernames/';
-            $json    = $this->request($url, 'GET');
-            $json    = json_decode($json['body']);
+            $username = $username ?? $this->username;
+            $user_id  = $this->get_user_id($username);
+            $url      = 'https://i.instagram.com/api/v1/users/'.$user_id.'/former_usernames/';
+            $json     = $this->request($url, 'GET');
+            $json     = json_decode($json['body']);
             if(isset($json->status) and $json->status == 'ok'){
                 return $json;
             }
