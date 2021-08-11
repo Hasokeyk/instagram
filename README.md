@@ -86,7 +86,7 @@ Lütfen burayı dikkatle okunuyun.
 
 ## Örnek Kodlar
 
-# Login işlemi
+# Login/Giriş işlemi
 
 Her işlemden önce kullanıcı girişi yapmalısınız. 1 Kere giriş yaptıktan sonra sistem önbelleğe alacaktır ve bundan
 sonraki işlemleriniz daha hızlı bir şekilde çalışacaktır.
@@ -117,6 +117,49 @@ sonraki işlemleriniz daha hızlı bir şekilde çalışacaktır.
         echo 'Login False';
     }
     //LOGIN CONTROL
+
+```
+
+# İki Adımlı Login/Giriş işlemi
+
+Instagrama ilk giriş denemenizde 2 adımlı doğrulama açıksa size bir kod gelecektir. Kodu ekranda çıkan inputa girip "Login" butonuna basarsanız giriş işleminiz otomatik olarak tamamlanacaktır.
+Bir dahaki girişlerde eğer ipniz değişmediyse kod sormadan giriş yapabilirsiniz.
+
+```php
+<?php
+
+    use instagram\instagram;
+    
+    require "/vendor/autoload.php";
+    
+    $username = 'username';
+    $password = 'password';
+    
+    $instagram    = new instagram($username, $password);
+    
+    if(isset($_REQUEST['two_factor_login_code'], $_REQUEST['two_factor_identifier']) and !empty($_REQUEST['two_factor_login_code']) and !empty($_REQUEST['two_factor_identifier'])){
+        $code             = trim($_REQUEST['two_factor_login_code']);
+        $token            = trim($_REQUEST['two_factor_identifier']);
+        $two_factor_login = $instagram->login->two_factor_login($code, $token);
+        print_r($two_factor_login);
+    }else{
+        $login        = $instagram->login->login();
+        if(isset($login->two_factor_identifier) and !empty($login->two_factor_identifier)){
+            echo <<<END
+        <form action="" method="post">
+            <input type="hidden" name="two_factor_identifier" value="$login->two_factor_identifier">
+            <input type="text" name="two_factor_login_code">
+            <input type="submit" value="Login">
+        </form>
+        END;
+        }
+        else if($instagram->login->login_control()){
+            echo 'Login Success';
+        }
+        else{
+            echo 'Login Fail';
+        }
+    }
 
 ```
 
@@ -158,6 +201,7 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 | İşlemler  | Çalışıyor | Örnek Dosya |
 | ------------- | ------------- | ------------- |
 | Kullanıcı Girişi  | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) | 
+| iki Adımlı Kullanıcı Girişi  | :heavy_check_mark: | [iinstagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php) | 
 | Giriş Yapmış Kullanıcı Bilgisi Getirme  | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php) |
 | Giriş Yapmış Kullanıcı İstatistik Getirme  | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php) |
 | Giriş Yapmış Kullanıcının En Az Etkileşimde Olduğu Kullanıcılar  | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |

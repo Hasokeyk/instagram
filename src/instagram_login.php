@@ -14,59 +14,10 @@
             $this->functions = $functions;
         }
         
-        public function login2($username = null, $password = null){
-            
-            $username       = $username??$this->username;
-            $password       = $password??$this->password;
-            $password       = $this->encrypt($password);
-            $this->username = $username;
-            
-            $url = 'https://i.instagram.com/api/v1/accounts/login/';
-            
-            $post_data = [
-                'phone_id'            => "832f3947-2366-42c7-a49e-88136c36f7ad",
-                'enc_password'        => $password,
-                '_csrftoken'          => 'YBck6oCPqG3e2YtLRxeiebBfVQawQm04',
-                'username'            => $username,
-                'adid'                => "f5904e04-349a-48ca-8516-8555ae99660c",
-                'guid'                => "f1c270c3-8663-40ef-8612-3dc8853b3459",
-                'device_id'           => "android-daa21d4b02905ea0",
-                'google_tokens'       => '[]',
-                'login_attempt_count' => '0',
-            ];
-            $post_data = ['signed_body' => (string) 'SIGNATURE.{"username":"hayatikodla"}'];
-            
-            $header = [
-                'User-Agent' => 'Instagram 177.0.0.30.119 Android (22/5.1.1; 160dpi; 540x960; Google/google; google Pixel 2; x86; qcom; tr_TR; 276028050)',
-            ];
-            
-            $cookie = [
-                'mid'       => 'YB2r4AABAAERcl5ESNxLjr_tt4Q5',
-                'csrftoken' => 'YBck6oCPqG3e2YtLRxeiebBfVQawQm04',
-            ];
-            
-            /*
-            $client = new \GuzzleHttp\Client([
-                'verify' => false,
-                'headers' => $header
-            ]);
-    
-            $result = $client->post($url,
-                [
-                    'form_params' => $post_data
-                ]
-            );
-            */
-            
-            $result = $this->request($url, 'POST', $post_data, $header);
-            print_r($result);
-            
-        }
-        
         public function login($username = null, $password = null){
             
-            $username       = $username??$this->username;
-            $password       = $password??$this->password;
+            $username       = $username ?? $this->username;
+            $password       = $password ?? $this->password;
             $this->username = $username;
             
             $cookie = $this->cache('sessionid');
@@ -107,20 +58,62 @@
         private function login_check($json = null){
             if($json != null){
                 $json_body = json_decode($json['body']);
-                if($json_body->status == 'ok'){
-                    $cookie   = $this->cache('sessionid');
-                    if($cookie == false){
-                        foreach($json['headers']['ig-set-authorization'] as $cookie){
-                            $this->cache('Bearer', $cookie);
-                            preg_match('|Bearer IGT:(.*):(.*)|isu', $cookie,$session_json);
-                            $session_json = json_decode(base64_decode($session_json[2]));
-                            $this->cache('sessionid', $session_json->sessionid);
+                if(!isset($json_body->two_factor_required)){
+                    if($json_body->status == 'ok'){
+                        $cookie = $this->cache('sessionid');
+                        if($cookie == false){
+                            foreach($json['headers']['ig-set-authorization'] as $cookie){
+                                $this->cache('Bearer', $cookie);
+                                preg_match('|Bearer IGT:(.*):(.*)|isu', $cookie, $session_json);
+                                $session_json = json_decode(base64_decode($session_json[2]));
+                                $this->cache('sessionid', $session_json->sessionid);
+                            }
                         }
+                        return true;
                     }
-                    return true;
+                }
+                else{
+                    return (object) [
+                        'two_factor_identifier' => $json_body->two_factor_info->two_factor_identifier
+                    ];
                 }
             }
             return false;
+        }
+        
+        public function two_factor_login($code = null, $two_factor_identifier = null){
+            
+            if($code != null and $two_factor_identifier != null){
+                
+                $username = $this->username;
+                
+                $url       = 'https://i.instagram.com/api/v1/accounts/two_factor_login/';
+                $post_data = [
+                    'verification_code'     => $code,
+                    'phone_id'              => $this->get_phone_id(),
+                    'two_factor_identifier' => $two_factor_identifier,
+                    'trust_this_device'     => 1,
+                    '_csrftoken'            => $this->get_csrftoken(),
+                    'username'              => $username,
+                    'adid'                  => $this->get_adid(),
+                    'guid'                  => $this->get_guid(),
+                    'device_id'             => $this->get_device_id(),
+                    'verification_method'   => 6,
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $cookie = [
+                    'mid'       => 'YB2r4AABAAERcl5ESNxLjr_tt4Q5',
+                    'csrftoken' => $this->get_csrftoken(),
+                ];
+                
+                $result = $this->request($url, 'POST', $post_data, null, $cookie);
+                return $this->login_check($result);
+                
+            }
+            
+            return false;
+            
         }
         
         public function login_control($username = null){
@@ -226,7 +219,7 @@
         
         public function logout($username = null){
             
-            $username = $username??$this->username;
+            $username = $username ?? $this->username;
             
             $url         = 'https://i.instagram.com/api/v1/accounts/logout/';
             $post_data   = [
