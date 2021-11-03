@@ -110,7 +110,7 @@
             $cache = $this->cache('users/'.$user_id);
             if(!$cache){
                 if($user_id != null){
-                    $url  = 'https://i.instagram.com/api/v1/friendships/show/'.$user_id.'/';
+                    $url  = 'https://i.instagram.com/api/v1/users/'.$user_id.'/usernameinfo';
                     $json = $this->request($url);
                     $json = json_decode($json['body']);
                     $this->cache('users/'.$user_id, $json);
@@ -152,6 +152,26 @@
             
         }
         
+        public function get_user_friendship_show($user_id = null){
+            
+            $cache = $this->cache('users/'.$user_id);
+            if(!$cache){
+                if($user_id != null){
+                    $url  = 'https://i.instagram.com/api/v1/friendships/show/'.$user_id.'/';
+                    $json = $this->request($url);
+                    $json = json_decode($json['body']);
+                    $this->cache('users/'.$user_id, $json);
+                    return $json;
+                }
+            }
+            else{
+                return $cache;
+            }
+            
+            return false;
+            
+        }
+        
         public function get_multi_user_friendship_show($user_ids = []){
             
             if($user_ids != null){
@@ -174,7 +194,7 @@
             if(!$cache){
                 $username = $this->username;
                 if($username != null){
-                    $url  = 'https://i.instagram.com/api/v1/scores/bootstrap/users/?surfaces=%5B%22coefficient_direct_recipients_ranking_variant_2%22%2C%22coefficient_rank_recipient_user_suggestion%22%2C%22coefficient_besties_list_ranking%22%2C%22coefficient_ios_section_test_bootstrap_ranking%22%2C%22autocomplete_user_list%22%5D';
+                    $url  = 'https://i.instagram.com/api/v1/scores/bootstrap/users/?surfaces=["coefficient_direct_closed_friends_ranking","coefficient_direct_recipients_ranking_variant_2","coefficient_rank_recipient_user_suggestion","coefficient_besties_list_ranking","coefficient_ios_section_test_bootstrap_ranking","autocomplete_user_list"]';
                     $json = $this->request($url);
                     if($json['status'] == 'ok'){
                         $json = json_decode($json['body']);
@@ -199,7 +219,7 @@
             if(!$cache){
                 $username = $this->username;
                 if($username != null){
-                    $url  = 'https://i.instagram.com/api/v1/banyan/banyan/?views=%5B%22direct_user_search_keypressed%22%2C%22group_stories_share_sheet%22%2C%22reshare_share_sheet%22%2C%22direct_inbox_active_now%22%2C%22story_share_sheet%22%2C%22forwarding_recipient_sheet%22%2C%22direct_user_search_nullstate%22%2C%22threads_people_picker%22%5D';
+                    $url  = 'https://i.instagram.com/api/v1/banyan/banyan/?views=["direct_user_search_keypressed","group_stories_share_sheet","reshare_share_sheet","direct_inbox_active_now","story_share_sheet","forwarding_recipient_sheet","direct_user_search_nullstate","threads_people_picker"]';
                     $json = $this->request($url);
                     if($json['status'] == 'ok'){
                         $json = json_decode($json['body']);
@@ -306,7 +326,7 @@
         public function send_inbox_text($username, $text = 'Hello', $style = null){
             
             if($username != null){
-    
+                
                 $user_id = $this->get_user_id($username);
                 $url     = 'https://i.instagram.com/api/v1/direct_v2/threads/broadcast/text/';
                 //$thread_id = $this->get_inbox_user_thread($username);
@@ -342,7 +362,7 @@
         public function send_inbox_text_heart($username, $text = 'Hello'){
             
             if($username != null){
-                return $this->send_inbox_text($username,$text,1);
+                return $this->send_inbox_text($username, $text, 1);
             }
             
             return false;
@@ -352,7 +372,7 @@
         public function send_inbox_text_gift($username, $text = 'Hello'){
             
             if($username != null){
-                return $this->send_inbox_text($username,$text,2);
+                return $this->send_inbox_text($username, $text, 2);
             }
             
             return false;
@@ -362,7 +382,7 @@
         public function send_inbox_text_confetti($username, $text = 'Hello'){
             
             if($username != null){
-                return $this->send_inbox_text($username,$text,3);
+                return $this->send_inbox_text($username, $text, 3);
             }
             
             return false;
@@ -372,7 +392,7 @@
         public function send_inbox_text_fire($username, $text = 'Hello'){
             
             if($username != null){
-                return $this->send_inbox_text($username,$text,4);
+                return $this->send_inbox_text($username, $text, 4);
             }
             
             return false;
@@ -666,7 +686,124 @@
         }
         */
         
+        
+        public function get_multiple_accout_detected($user_id = null){
+            
+            $user_id = $user_id ?? $this->get_user_id($this->username);
+            $cache   = $this->cache('users/multiple-account-'.$user_id);
+            if(!$cache){
+                if($user_id != null){
+                    $url  = 'https://i.instagram.com/api/v1/multiple_accounts/get_featured_accounts/?target_user_id='.$user_id;
+                    $json = $this->request($url);
+                    $json = json_decode($json['body']);
+                    $this->cache('users/multiple-account-'.$user_id, $json);
+                    return $json;
+                }
+            }
+            else{
+                return $cache;
+            }
+            
+            return false;
+            
+        }
+        
         private function generate_client_context(){
             return (round(microtime(true) * 1000) << 22 | random_int(PHP_INT_MIN, PHP_INT_MAX) & 4194303) & PHP_INT_MAX;
+        }
+        
+        public function register($email = null, $full_name = null, $password = null){
+            
+            if($email != null and $full_name != null and $password != null){
+                $url       = 'https://i.instagram.com/api/v1/accounts/send_verify_email/';
+                $post_data = [
+                    'auto_confirm_only' => 'false',
+                    'waterfall_id'      => 'b86ef5d6-fe14-4f62-83fb-563f4ec2ddb4',
+                    'email'             => $email,
+                    'device_id'         => $this->get_device_id(),
+                    'guid'              => $this->get_guid(),
+                    'phone_id'          => $this->get_phone_id(),
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $json = $this->request($url, 'BODYPOST', $post_data, null, null, false);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
+        }
+        
+        public function register_email_code_check($email = null, $code = null){
+            
+            if($code != null and $email != null){
+                $url       = 'https://i.instagram.com/api/v1/accounts/check_confirmation_code/';
+                $post_data = [
+                    'auto_confirm_only' => 'false',
+                    'waterfall_id'      => 'b86ef5d6-fe14-4f62-83fb-563f4ec2ddb4',
+                    'email'             => $email,
+                    'code'              => $code,
+                    'device_id'         => $this->get_device_id(),
+                    'guid'              => $this->get_guid(),
+                    'phone_id'          => $this->get_phone_id(),
+                ];
+                $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
+                
+                $json = $this->request($url, 'POST', $post_data, null, null, false);
+                $json = json_decode($json['body']);
+                
+                return $json;
+            }
+            
+            return false;
+        }
+        
+        public function register_end($username = null, $password = null, $email = null, $full_name = null, $singup_code = null){
+            
+            if($username != null and $password != null and $email != null and $full_name != null and $singup_code != null){
+                
+                $url       = 'https://i.instagram.com/api/v1/accounts/create/';
+                $post_data = [
+                    'is_secondary_account_creation'          => 'false',
+                    'jazoest'                                => '22354',
+                    'tos_version'                            => 'row',
+                    'suggestedUsername'                      => '',
+                    'allow_contacts_sync'                    => 'true',
+                    'sn_result'                              => "API_ERROR:+class+X.9Be:7:+",
+                    'do_not_auto_login_if_credentials_match' => "true",
+                    'waterfall_id'                           => 'b86ef5d6-fe14-4f62-83fb-563f4ec2ddb4',
+                    'sn_nonce'                               => 'aGFzb2tleWsrMTJAeWFuZGV4LmNvbXwxNjMyMTcwODQ2fJWSSEq6UzsPO4Gccq7rn7ymR3z8rbbOXA==',
+                    'username'                               => $username,
+                    'password'                               => $this->functions->login->encrypt($password),
+                    'first_name'                             => $full_name,
+                    'day'                                    => 20,
+                    'year'                                   => 1991,
+                    'month'                                  => 9,
+                    'email'                                  => $email,
+                    'force_sign_up_code'                     => $singup_code,
+                    'device_id'                              => $this->get_device_id(),
+                    'guid'                                   => $this->get_guid(),
+                    'phone_id'                               => $this->get_phone_id(),
+                ];
+                //$post_data = http_build_query(['signed_body' => 'SIGNATURE.'.json_encode($post_data)]);
+                
+                $post_data = 'signed_body=SIGNATURE.%7B%22is_secondary_account_creation%22%3A%22false%22%2C%22jazoest%22%3A%2222354%22%2C%22tos_version%22%3A%22row%22%2C%22suggestedUsername%22%3A%22%22%2C%22allow_contacts_sync%22%3A%22true%22%2C%22sn_result%22%3A%22API_ERROR%3A+class+X.9Be%3A7%3A+%22%2C%22do_not_auto_login_if_credentials_match%22%3A%22true%22%2C%22phone_id%22%3A%22bb81ea3b-341c-4d04-9501-853630ab8d5c%22%2C%22enc_password%22%3A%22%23PWD_INSTAGRAM%3A4%3A1632170953%3AAdPQCpWGjUJyNBI7WRcAAW0zRJkkuFJl164CgAO6fEqTVP%2BYKFVhYeOmHCDIKPvY9zNtsbyXD7lIaa%2BmDodn4i%2BXkRYxxIq3zY0yPHpdBEfMbaRHJKbUBDcuZLYOQFY5rk03eJyvKaJMGhzfQ4vqgiOWFupbTxRDpFnzCnF%2FAUxsQth4SfKoaU6UafVrg5HkLS1prtKMsFvJYkgANUQZyxTkvEDSabq9SN0UaP71kbGG8EqkU4thP6DXgq%2FlDNinX801l0I6KD4sG6etTpDv%2BDpL04bwEi7TnQcxcidDFADo3XLSIvojZ731Bg%2BKIN2yOrEsJ4WQAln9SC99LvYE%2FZUG8KN8w453Rqnb5oJuIw7vbPqbZQOmjkyiRkCVyj78gtrqWac1rw%3D%3D%22%2C%22username%22%3A%22ramazandogan7515%22%2C%22first_name%22%3A%22Ramazan+Do%C4%9Fan%22%2C%22day%22%3A%2220%22%2C%22adid%22%3A%22904b800c-50b4-4cb6-9030-6d6816d19f0d%22%2C%22guid%22%3A%220ff470bf-e663-4a1d-a327-38603a77a1bc%22%2C%22year%22%3A%221991%22%2C%22device_id%22%3A%22android-d96d1dea964853ad%22%2C%22_uuid%22%3A%220ff470bf-e663-4a1d-a327-38603a77a1bc%22%2C%22email%22%3A%22hasokeyk%2B12%40yandex.com%22%2C%22month%22%3A%229%22%2C%22sn_nonce%22%3A%22aGFzb2tleWsrMTJAeWFuZGV4LmNvbXwxNjMyMTcwODQ2fJWSSEq6UzsPO4Gccq7rn7ymR3z8rbbOXA%3D%3D%22%2C%22force_sign_up_code%22%3A%22wLqO8Hsl%22%2C%22waterfall_id%22%3A%22b86ef5d6-fe14-4f62-83fb-563f4ec2ddb4%22%2C%22qs_stamp%22%3A%22%22%2C%22one_tap_opt_in%22%3A%22true%22%7D';
+                
+                $header = [
+                    'User-Agent'   => 'Instagram 203.0.0.29.118 Android (25/7.1.2; 160dpi; 540x960; Google/google; google Pixel 2; x86; android_x86; tr_TR; 314665258)',
+                    'Content-Type' => ' application/x-www-form-urlencoded; charset=UTF-8',
+                    //'Cookie'       => ' csrftoken=UIzWq1MUKRonOIvUIXui5l0IDvb6Y1Ch; ig_did=624DFF22-C0FD-4408-A5B0-04F0AC02E040; ig_nrcb=1; mid=YUj9BAAEAAEHv1uFrFcQxsWkFbpj'
+                ];
+                
+                $json = $this->request($url, 'UPLOAD', $post_data);
+                print_r($json);
+                $json = json_decode($json['body']);
+                
+                return $json;
+                
+            }
+            
+            return false;
         }
     }

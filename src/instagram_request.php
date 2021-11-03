@@ -6,16 +6,16 @@
     
     class instagram_request{
         
-        public  $headers;
-        private $app_id    = '567067343352427';
-        private $phone_id  = '832f3947-2366-42c7-a49e-88136c36f7ad';
+        public $headers;
+        private $app_id = '567067343352427';
+        private $phone_id = '832f3947-2366-42c7-a49e-88136c36f7ad';
         private $device_id = 'android-daa21d4b02905ea0';
-        private $guid      = 'f1c270c3-8663-40ef-8612-3dc8853b3459';
-        private $adid      = 'f5904e04-349a-48ca-8516-8555ae99660c';
+        private $guid = 'f1c270c3-8663-40ef-8612-3dc8853b3459';
+        private $adid = 'f5904e04-349a-48ca-8516-8555ae99660c';
         
-        public $cache_path   = (__DIR__).'/cache/';
+        public $cache_path = (__DIR__).'/cache/';
         public $cache_prefix = 'insta';
-        public $cache_time   = 10; //Minute
+        public $cache_time = 10; //Minute
         
         public $user_agent = 'Instagram 177.0.0.30.119 Android (22/5.1.1; 160dpi; 540x960; Google/google; google Pixel 2; x86; qcom; tr_TR; 276028050)';
         
@@ -79,12 +79,14 @@
         
         public function cache($name, $desc = false, $json = false){
             
-            if(!file_exists($this->cache_path.$this->username)){
-                mkdir($this->cache_path.$this->username, 777);
-            }
-            
-            if(!file_exists($this->cache_path.$this->username.'/users/')){
-                mkdir($this->cache_path.$this->username.'/users/', 777);
+            if($this->username != null){
+                if(!file_exists($this->cache_path.$this->username)){
+                    mkdir($this->cache_path.$this->username, 777);
+                }
+                
+                if(!file_exists($this->cache_path.$this->username.'/users/')){
+                    mkdir($this->cache_path.$this->username.'/users/', 777);
+                }
             }
             
             $cache_file_path = $this->cache_path.$this->username.'/';
@@ -109,6 +111,10 @@
         
         public function request($url = '', $type = 'GET', $data = null, $header = null, $cookie = null, $user_cookie = true){
             
+            if($type == 'BODYPOST'){
+                $type = 'POST';
+                $data = ['body' => $data];
+            }
             if($type == 'UPLOAD'){
                 $type = 'POST';
                 $data = $data;
@@ -123,7 +129,7 @@
                 'X-IG-App-Locale'      => 'tr_TR',
                 'X-IG-Device-Locale'   => 'tr_TR',
                 'X-IG-Mapped-Locale'   => 'tr_TR',
-                'X-Pigeon-Session-Id'  => 'fd08fa6f-2d24-4514-8abc-5fd3ca620305',
+                'X-Pigeon-Session-Id'  => 'UFS-106fbe3b-acf7-4851-bba9-16d25b955782-0',
                 'X-IG-Connection-Type' => 'WIFI',
                 'X-IG-Capabilities'    => '3brTvx8=',
                 'Priority'             => 'u=3',
@@ -133,6 +139,7 @@
                 'X-FB-HTTP-Engine'     => 'Liger',
                 'X-FB-Client-IP'       => 'True',
                 'X-FB-Server-Cluster'  => 'True',
+                //'X-IG-Nav-Chain'       => '97Q:email_verify:2,96z:one_page_registration:3,97Q:email_verify:6,96z:one_page_registration:7,97H:add_birthday:8,97B:username_sign_up:9,97A:username_sign_up:10',
                 'X-IG-App-ID'          => $this->app_id,
                 'X-IG-Device-ID'       => $this->guid,
                 'X-IG-Android-ID'      => $this->device_id,
@@ -140,10 +147,10 @@
                 'Authorization'        => $this->cache('Bearer'),
             ];
             
-            $headers = $header ?? $headers_default;
+            $headers = $header??$headers_default;
             
             if($user_cookie == true){
-                $cookie            = $cookie ?? $this->create_cookie(false, $user_cookie);
+                $cookie            = $cookie??$this->create_cookie(false, $user_cookie);
                 $headers['Cookie'] = $cookie;
             }
             
@@ -199,7 +206,7 @@
         
         public function get_session_id($username = null){
             
-            $username       = $username ?? $this->username;
+            $username       = $username??$this->username;
             $this->username = $username;
             
             $cookie = $this->cache('sessionid');
@@ -251,6 +258,7 @@
             
             return (substr($samanlik, -$length) === $igne);
         }
+        
         //KELİME BİTİYORSA
         
     }
