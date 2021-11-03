@@ -23,6 +23,13 @@
     <a href="https://github.com/hasokeyk/instagram/issues">Geri Bildirim</a>
 </p>
 
+## Bağış
+
+| Coin | Cüzdan |
+| ------------- | ------------- |
+| ETH | 0x2091be5b1840b10a841376c366ec0475771b4ec8 |
+| BTC | 12Set9KZGXWD64pbeGsdqZCJZofxyK77LP |
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Başlıklar</h2></summary>
