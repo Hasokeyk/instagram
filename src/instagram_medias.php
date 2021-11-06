@@ -378,4 +378,16 @@
 
 			return false;
 		}
+        
+        public function get_story($username = null){
+    
+            $username = $this->functions->user->get_user_id($username??$this->username);
+            //$url = 'https://i.instagram.com/api/v1/feed/user/'.$username.'/story/?supported_capabilities_new=%5B%7B%22name%22%3A%22SUPPORTED_SDK_VERSIONS%22%2C%22value%22%3A%22103.0%2C104.0%2C105.0%2C106.0%2C107.0%2C108.0%2C109.0%2C110.0%2C111.0%2C112.0%2C113.0%2C114.0%2C115.0%2C116.0%2C117.0%2C118.0%2C119.0%2C120.0%2C121.0%22%7D%2C%7B%22name%22%3A%22FACE_TRACKER_VERSION%22%2C%22value%22%3A%2214%22%7D%2C%7B%22name%22%3A%22segmentation%22%2C%22value%22%3A%22segmentation_enabled%22%7D%2C%7B%22name%22%3A%22COMPRESSION%22%2C%22value%22%3A%22ETC2_COMPRESSION%22%7D%2C%7B%22name%22%3A%22world_tracker%22%2C%22value%22%3A%22world_tracker_enabled%22%7D%2C%7B%22name%22%3A%22gyroscope%22%2C%22value%22%3A%22gyroscope_enabled%22%7D%5D';
+            $url = 'https://i.instagram.com/api/v1/feed/user/'.$username.'/story/';
+            $json = $this->request($url, 'GET');
+            $json = json_decode($json['body']);
+    
+            return $json;
+            
+        }
 	}

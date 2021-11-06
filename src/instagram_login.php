@@ -131,7 +131,7 @@
             }
         }
         
-        private function encrypt($password){
+        public function encrypt($password){
             
             $keys          = $this->get_sync();
             $public_key    = $keys->pub_key;

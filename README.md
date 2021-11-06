@@ -16,87 +16,87 @@
 <h3 align="center">Hasokeyk / Instagram</h3>
 
 <p align="center">
-    Bu PHP kütüphanesi ile instagram mobil uygulamasının tüm özelliklerini kullanabilirsiniz.
+    With this PHP library, you can use all features of the instagram Mobile App
     <br />
     <a href="#">Demo</a>
     ·
-    <a href="https://github.com/hasokeyk/instagram/issues">Geri Bildirim</a>
+    <a href="https://github.com/hasokeyk/instagram/issues">Feedback</a>
+    <br>
+    <a href="https://github.com/Hasokeyk/instagram/blob/main/README-TR.md" style="font-size:24px">Türkçe doküman için tıklayın</a>
 </p>
 
-## Bağış
+## Donation
 
-| Coin | Cüzdan |
+| Coin | Wallet |
 | ------------- | ------------- |
 | ETH | 0x2091be5b1840b10a841376c366ec0475771b4ec8 |
 | BTC | 12Set9KZGXWD64pbeGsdqZCJZofxyK77LP |
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary><h2 style="display: inline-block">Başlıklar</h2></summary>
+  <summary><h2 style="display: inline-block">Contents</h2></summary>
   <ol>
     <li>
-      <a href="#proje-hakkında">Proje Hakkında</a>
+      <a href="#about-project">About Project</a>
     </li>
     <li>
-      <a href="#kullanmaya-başlayın">Kullanmaya Başlayın</a>
+      <a href="#get-started">Get Started</a>
       <ul>
-        <li><a href="#gereksinimler">Gereksinimler</a></li>
-        <li><a href="#kurulum">Kurulum</a></li>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#kullanım">Kullanım</a></li>
-    <li><a href="#yol-haritası">Yol Haritası</a></li>
-    <li><a href="#katkı-sağlayanlar">Katkı Sağlayanlar</a></li>
-    <li><a href="#lisans">Lisans</a></li>
-    <li><a href="#iletişim">İletişim</a></li>
-    <li><a href="#donation">Bağış Yapın</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#road-map">Road Map</a></li>
+    <li><a href="#contributors">Contributors</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact-us">Contant Us</a></li>
   </ol>
 </details>
 
-## Proje Hakkında
+## About Project
 
-Bu proje instagram mobil uygulamasının kabiliyetlerini PHP kütüphanesinde kullanabilmek amacıyla yapılmıştır. Mobil
-uygulamadaki sorguların birebir kopyalanarak instagram sunucularına sorgu yapıp cevapları almaktadır.
+This project is made in PHP library of all instagram mobile app features. This library can send exactly same queries like mobile app
+and returns server responses.
 
 <!-- GETTING STARTED -->
 
-## Kullanmaya Başlayın
+## Getting Started
 
-Lütfen burayı dikkatle okunuyun.
+Please read carefully.
 
-### Gereksinimler
+### Requirements
 
-- Bilgisayarınızda "composer" uygulaması kurulu olması gerekmektedir. Kurulum için https://getcomposer.org/download/
-- PHP 7.4 ve üstü
+- You must have to "composer" application on your PC. For installation  https://getcomposer.org/download/
+- PHP 7.4 or above
 
-### Kurulum
+### Setup
 
-## Composer ile kurulum
+## Setup via Composer
 
-* Çalışma klasörünüzü belirledikten sonra o klasörde terminal açıp aşağıdaki komutu yazıp entere basın.
+* you must determine your root(working) folder after that open console ( terminal )
   ```sh
   composer require hasokeyk/instagram
   ```
 
-## Repoyu indirerek kullanma
+## Installing via download Repository
 
-1. İlk önce repoyu indirin
+1. Firsty download repository
    ```sh
    git clone https://github.com/hasokeyk/instagram.git
    ```
-2. Gerekli kütüphaneleri indirmek için aşağıdaki komutu kullanın.
+2. Use the command below to download the required libraries.
    ```sh
    composer install
    ```
 
 <!-- USAGE EXAMPLES -->
 
-## Örnek Kodlar
+## Examples
 
-# Login/Giriş işlemi
+# Login
 
-Her işlemden önce kullanıcı girişi yapmalısınız. 1 Kere giriş yaptıktan sonra sistem önbelleğe alacaktır ve bundan
-sonraki işlemleriniz daha hızlı bir şekilde çalışacaktır.
+You must login before each operation. In your first login operation, the system will be cached and your operation will run faster.
 
 ```php
 <?php
@@ -127,10 +127,10 @@ sonraki işlemleriniz daha hızlı bir şekilde çalışacaktır.
 
 ```
 
-# İki Adımlı Login/Giriş işlemi
+# Two factor authorization
 
-Instagrama ilk giriş denemenizde 2 adımlı doğrulama açıksa size bir kod gelecektir. Kodu ekranda çıkan inputa girip "Login" butonuna basarsanız giriş işleminiz otomatik olarak tamamlanacaktır.
-Bir dahaki girişlerde eğer ipniz değişmediyse kod sormadan giriş yapabilirsiniz.
+In your first login attemp, if two factor authorization are enabled, instagram will send you a code. If you enter the code into the input area, yout login operation will be completed automatically.
+After your next logins, if yout IP is not changed, you can login without asking code.
 
 ```php
 <?php
@@ -170,10 +170,10 @@ Bir dahaki girişlerde eğer ipniz değişmediyse kod sormadan giriş yapabilirs
 
 ```
 
-# Kullanıcı Paylaşımlarını Getirme
+# Getting user posts
 
-Aşağıdaki kodları çalıştırğınızda giriş yaptığınız kullanıcının son 50 paylaşımını getireceksiniz. Başka birinin
-paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidir.
+When you run the below code, you will get last 50 posts of user you are logged into. 
+If you want another accounts posts get_user_posts('hasokeyk') please use this.
 
 ```php
 <?php
@@ -201,84 +201,84 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 
 <!-- ROADMAP -->
 
-## Yol Haritası
+## Road Map
 
-## Kullanıcı İşlemleri
+## User operations
 
-| İşlemler  | Çalışıyor | Örnek Dosya |
+| Operation  | Working | Example File |
 | ------------- | ------------- | ------------- |
-| Kullanıcı Girişi  | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) | 
-| iki Adımlı Kullanıcı Girişi  | :heavy_check_mark: | [iinstagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php) | 
-| Giriş Yapmış Kullanıcı Bilgisi Getirme  | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php) |
-| Giriş Yapmış Kullanıcı İstatistik Getirme  | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php) |
-| Giriş Yapmış Kullanıcının En Az Etkileşimde Olduğu Kullanıcılar  | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
-| Giriş Yapmış Kullanıcının En Çok Gördüğü Kullanıcılar  | :heavy_check_mark: | [instagram-user-my-most-seen-in-feed.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
-| Profil Resmi Değiştirme  | :heavy_check_mark: | [instagram-user-change-profil-pic.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-change-profil-pic.php) |
-| Kullanıcı Takip Etme  | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
-| Kullanıcı Takipten Çıkma  | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
-| Kullanıcının Kendisini Takipten Çıkma  | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
-| Kullanıcı Bildirim Listesi Getirme  | :heavy_check_mark: | [instagram-user-my-notification.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-notification.php) |
-| Kullanıcı Mesaj İsteklerini Getirme  | :heavy_check_mark: | [instagram-user-my-pending-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-pending-inbox.php) |
-| Kullanıcı Mesaj Kutusunu Getirme  | :heavy_check_mark: | [instagram-user-my-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-inbox.php) |
-| Kullanıcı Takipçilerini Getirme  | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-followers.php) |
-| Paylaşım Getirme  | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-get-posts.php) |
+| Login | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) | 
+| 2-Factor Auth Login  | :heavy_check_mark: | [iinstagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php) | 
+| Getting posts of logged in account  | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php) |
+| Getting statictics of logged in account | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php) |
+| Getting least Viewed of logged in account  | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
+| Getting most Viewed Users by Logged In  | :heavy_check_mark: | [instagram-user-my-most-seen-in-feed.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
+| Changing profile image  | :heavy_check_mark: | [instagram-user-change-profil-pic.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-change-profil-pic.php) |
+| Follow an account  | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
+| Unffollow an account | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
+| Unfollow the Account Itself | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
+| Getting notification list of logged in account | :heavy_check_mark: | [instagram-user-my-notification.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-notification.php) |
+| Getting message request of logged in account | :heavy_check_mark: | [instagram-user-my-pending-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-pending-inbox.php) |
+| Getting message inbox of logged in account | :heavy_check_mark: | [instagram-user-my-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-inbox.php) |
+| Getting Account Followers | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-followers.php) |
+| Getting Post | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-get-posts.php) |
 
 
 ## Paylaşım İşlemleri
 
-| İşlemler  | Çalışıyor | Örnek Dosya |
+| Operation  | Work | Example |
 | ------------- | ------------- | ------------- |
-| Paylaşım İstatistikleri Getirme  | :heavy_check_mark: | [instagram-user-get-posts-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/statistics/instagram-user-get-posts-statistics.php) |
-| Görsel Paylaşma  | :heavy_check_mark: | [instagram-media-share-photo.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-share-photo.php) |
-| Video Paylaşma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/media/) |
-| Story Paylaşma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/media/) |
-| Carousel Paylaşma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/media/) |
-| Paylaşım Beğenme  | :heavy_check_mark: | [instagram-media-like.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-like.php) |
-| Paylaşım Beğenmekten Çıkma  | :heavy_check_mark: | [instagram-media-unlike.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unlike.php) |
-| Paylaşım Kayıt Etme  | :heavy_check_mark: | [instagram-media-save.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-save.php) |
-| Paylaşım Kayıt Etmekten Çıkma  | :heavy_check_mark: | [instagram-media-unsave.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unsave.php) |
-| Paylaşıma Yorum Yazma  | :heavy_check_mark: | [instagram-media-send-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-comment.php) |
-| Paylaşıma Yorum Silme  | :heavy_check_mark: | [instagram-media-del-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-del-comment.php) |
-| Paylaşım Mesaj Olarak Yollama  | :heavy_check_mark: | [instagram-media-send-media-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-media-inbox.php) |
+| Getting share statistics | :heavy_check_mark: | [instagram-user-get-posts-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/statistics/instagram-user-get-posts-statistics.php) |
+| Image Share  | :heavy_check_mark: | [instagram-media-share-photo.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-share-photo.php) |
+| Video Share  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/media/) |
+| Story Share  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/media/) |
+| Carousel Share  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/media/) |
+| Share Likes  | :heavy_check_mark: | [instagram-media-like.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-like.php) |
+| Share Unlike  | :heavy_check_mark: | [instagram-media-unlike.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unlike.php) |
+| Share Save  | :heavy_check_mark: | [instagram-media-save.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-save.php) |
+| Share Unsave  | :heavy_check_mark: | [instagram-media-unsave.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unsave.php) |
+| Share Comment  | :heavy_check_mark: | [instagram-media-send-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-comment.php) |
+| Share delete comment  | :heavy_check_mark: | [instagram-media-del-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-del-comment.php) |
+| Send share to message  | :heavy_check_mark: | [instagram-media-send-media-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-media-inbox.php) |
 
-## Mesajlaşma İşlemleri
+## Messaging Operation
 
-| İşlemler  | Çalışıyor | Örnek Dosya |
+| Operation  | Work | Example |
 | ------------- | ------------- | ------------- |
-| Yazı Olarak Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Link Olarak Mesaj Atma  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) |
-| Kalp Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Görsel Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Alevli Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Hediyeli Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Konfeti Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Kalplli Mesaj Atma  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Send message as Text  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Send message as Link   | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) |
+| Send Heart  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Send Image  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Flame Text  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Message with present  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Message with confetti  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
+| Message with heart  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
 
-## Akıllı İşlemler
+## Smart Operation
 
-| İşlemler  | Çalışıyor | Örnek Dosya |
+| Operation  | Work | Example |
 | ------------- | ------------- | ------------- |
-| Sahte Takipçi Tespiti  | :heavy_check_mark: | [instagram-smart-get-fake-followers-profile.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-fake-followers-profile.php) |
-| Sahte Takip Edilen Tespiti  | :heavy_check_mark: | [instagram-smart-get-fake-following-profile.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-fake-following-profile.php) |
-| Takip Etmeniz Gereken Hesaplar  | :heavy_check_mark: | [instagram-smart-get-my-must-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-must-follow.php) |
-| Gizli Takipçileriniz  | :heavy_check_mark: | [instagram-smart-get-my-secret-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-secret-followers.php) |
+| Fake followeing detection | :heavy_check_mark: | [instagram-smart-get-fake-followers-profile.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-fake-followers-profile.php) |
+| Fake followers detection | :heavy_check_mark: | [instagram-smart-get-fake-following-profile.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-fake-following-profile.php) |
+| Accounts You Should Follow  | :heavy_check_mark: | [instagram-smart-get-my-must-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-must-follow.php) |
+| Secret Followers  | :heavy_check_mark: | [instagram-smart-get-my-secret-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-secret-followers.php) |
 
-## Lisans
+## License
 
-Bu proje geliştirme aşamasında olduğu sürece indirebilir ve kullanabilirsiniz. Başka amaçlar için kullanılırsa bu
-kodları yazan kişinin sorumluluğu bulunmamaktadır. Bu projeyi indirip kullanıdığınızda bunu kabul etmiş sayılırsınız.
+You can download and use it as long as this project is under development. If used for other purposes
+The person who wrote the codes is not responsible. By downloading and using this project, you agree to this.
 
-
-## Bağış Yapın
+## Donate
 
 patreon: https://www.patreon.com/hasokeyk
 
 
-## İletişim
+## Contact
 
 Hasan Yüksektepe - [INSTAGRAM](https://instagram.com/hasokeyk)
 
-Web Sitem : [https://hayatikodla.net](https://hayatikodla.net)
+Website : [https://hayatikodla.net](https://hayatikodla.net)
+
 
 [contributors-shield]: https://img.shields.io/github/contributors/hasokeyk/instagram.svg?style=for-the-badge
 
