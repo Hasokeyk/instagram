@@ -224,7 +224,7 @@ If you want another accounts posts get_user_posts('hasokeyk') please use this.
 | Getting Post | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-get-posts.php) |
 
 
-## Paylaşım İşlemleri
+## Post share operations
 
 | Operation  | Work | Example |
 | ------------- | ------------- | ------------- |
@@ -262,6 +262,9 @@ If you want another accounts posts get_user_posts('hasokeyk') please use this.
 | Fake followers detection | :heavy_check_mark: | [instagram-smart-get-fake-following-profile.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-fake-following-profile.php) |
 | Accounts You Should Follow  | :heavy_check_mark: | [instagram-smart-get-my-must-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-must-follow.php) |
 | Secret Followers  | :heavy_check_mark: | [instagram-smart-get-my-secret-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-secret-followers.php) |
+
+## Contributors
+Asım Murat YILMAZ - [GITHUB](https://github.com/asiminnesli)
 
 ## License
 

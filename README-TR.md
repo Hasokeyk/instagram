@@ -21,6 +21,8 @@
     <a href="#">Demo</a>
     ·
     <a href="https://github.com/hasokeyk/instagram/issues">Geri Bildirim</a>
+<br>
+<a href="https://github.com/Hasokeyk/instagram/blob/main/README.md" style="font-size:24px">Click for english document</a>
 </p>
 
 ## Bağış
@@ -264,6 +266,9 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 | Sahte Takip Edilen Tespiti  | :heavy_check_mark: | [instagram-smart-get-fake-following-profile.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-fake-following-profile.php) |
 | Takip Etmeniz Gereken Hesaplar  | :heavy_check_mark: | [instagram-smart-get-my-must-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-must-follow.php) |
 | Gizli Takipçileriniz  | :heavy_check_mark: | [instagram-smart-get-my-secret-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-secret-followers.php) |
+
+## Katkı Sağlayanlar
+Asım Murat YILMAZ - [GITHUB](https://github.com/asiminnesli)
 
 ## Lisans
 
