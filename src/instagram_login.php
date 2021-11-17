@@ -98,7 +98,7 @@
                     'adid'                  => $this->get_adid(),
                     'guid'                  => $this->get_guid(),
                     'device_id'             => $this->get_device_id(),
-                    'verification_method'   => 6,
+                    'verification_method'   => 1,
                 ];
                 $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
                 
