@@ -806,4 +806,51 @@
             
             return false;
         }
+        
+        public function set_status($status_text = 'I love ', $emoji = '😍'){
+            
+            $url      = 'https://i.instagram.com/api/v1/status/set_status/';
+            $post_var = [
+                'status_type' => 'manual',
+                'expires_at'  => strtotime('+1 days'),
+                'text'        => ($status_text),
+                '_uuid'       => '0ff470bf-e663-4a1d-a327-38603a77a1bc',
+                'emoji'       => ('😍'),
+                'audience'    => 'mutual_follows',
+            ];
+            
+            $json = $this->request($url, 'POST', $post_var);
+            $json = json_decode($json['body']);
+            
+            return $json;
+            
+        }
+        
+        public function set_status_reply($status_id = 'I love ',$thread_id = '', $message = 'Status Message'){
+            
+            $url      = 'https://i.instagram.com/api/v1/direct_v2/threads/broadcast/status_reply/';
+            $post_var = [
+                'status_id'            => $status_id,
+                'thread_id'            => $thread_id,
+                'action'               => 'send_item',
+                'is_shh_mode'          => 0,
+                'thread_ids'           => '%5B340282366841710300949128185597418409807%5D',
+                'send_attribution'     => '',
+                'client_context'       => '6875500892161881179',
+                'reply_type'           => 'text',
+                'device_id'            => 'android-d96d1dea964853ad',
+                'mutation_token'       => '6875500892161881179',
+                '_uuid'                => '0ff470bf-e663-4a1d-a327-38603a77a1bc',
+                'reply'                => $message,
+                'status_key'           => 0,
+                'status_author_id'     => 7573271439,
+                'offline_threading_id' => 687550089216188,
+            ];
+            
+            $json = $this->request($url, 'POST', $post_var);
+            $json = json_decode($json['body']);
+            
+            return $json;
+            
+        }
     }
