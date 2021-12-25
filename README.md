@@ -205,48 +205,49 @@ If you want another accounts posts get_user_posts('hasokeyk') please use this.
 
 ## User operations
 
-| Operation  | Working | Example File |
-| ------------- | ------------- | ------------- |
-| Login | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) | 
-| 2-Factor Auth Login  | :heavy_check_mark: | [iinstagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php) | 
-| Getting posts of logged in account  | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php) |
-| Getting statictics of logged in account | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php) |
-| Getting least Viewed of logged in account  | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
-| Getting most Viewed Users by Logged In  | :heavy_check_mark: | [instagram-user-my-most-seen-in-feed.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
-| Changing profile image  | :heavy_check_mark: | [instagram-user-change-profil-pic.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-change-profil-pic.php) |
-| Follow an account  | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
-| Unffollow an account | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
-| Unfollow the Account Itself | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
+| Operation                                      | Working | Example File |
+|------------------------------------------------| ------------- | ------------- |
+| Login                                          | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) | 
+| 2-Factor Auth Login                            | :heavy_check_mark: | [instagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php) | 
+| Login width proxy                              | :heavy_check_mark: | [instagram-user-login-with-proxy.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login-with-proxy.php) | 
+| Getting posts of logged in account             | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php) |
+| Getting statictics of logged in account        | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php) |
+| Getting least Viewed of logged in account      | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
+| Getting most Viewed Users by Logged In         | :heavy_check_mark: | [instagram-user-my-most-seen-in-feed.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
+| Changing profile image                         | :heavy_check_mark: | [instagram-user-change-profil-pic.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-change-profil-pic.php) |
+| Follow an account                              | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
+| Unffollow an account                           | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
+| Unfollow the Account Itself                    | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
 | Getting notification list of logged in account | :heavy_check_mark: | [instagram-user-my-notification.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-notification.php) |
-| Getting message request of logged in account | :heavy_check_mark: | [instagram-user-my-pending-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-pending-inbox.php) |
-| Getting message inbox of logged in account | :heavy_check_mark: | [instagram-user-my-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-inbox.php) |
-| Getting Account Followers | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-followers.php) |
-| Getting Post | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-get-posts.php) |
+| Getting message request of logged in account   | :heavy_check_mark: | [instagram-user-my-pending-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-pending-inbox.php) |
+| Getting message inbox of logged in account     | :heavy_check_mark: | [instagram-user-my-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-inbox.php) |
+| Getting Account Followers                      | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-followers.php) |
+| Getting Post                                   | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-get-posts.php) |
 
 
 ## Post share operations
 
-| Operation  | Work | Example |
-| ------------- | ------------- | ------------- |
+| Operation  | Work | Example                                                                                                                                                |
+| ------------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Getting share statistics | :heavy_check_mark: | [instagram-user-get-posts-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/statistics/instagram-user-get-posts-statistics.php) |
-| Image Share  | :heavy_check_mark: | [instagram-media-share-photo.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-share-photo.php) |
-| Video Share  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/media/) |
-| Story Share  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/media/) |
-| Carousel Share  | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/media/) |
-| Share Likes  | :heavy_check_mark: | [instagram-media-like.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-like.php) |
-| Share Unlike  | :heavy_check_mark: | [instagram-media-unlike.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unlike.php) |
-| Share Save  | :heavy_check_mark: | [instagram-media-save.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-save.php) |
-| Share Unsave  | :heavy_check_mark: | [instagram-media-unsave.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unsave.php) |
-| Share Comment  | :heavy_check_mark: | [instagram-media-send-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-comment.php) |
-| Share delete comment  | :heavy_check_mark: | [instagram-media-del-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-del-comment.php) |
-| Send share to message  | :heavy_check_mark: | [instagram-media-send-media-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-media-inbox.php) |
+| Image Share  | :heavy_check_mark: | [instagram-media-share-photo.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-share-photo.php)                      |
+| Video Share  | :x: | [COMING SOON](https://github.com/Hasokeyk/instagram/blob/main/examples/media/)                                                                         |
+| Story Share  | :x: | [COMING SOON](https://github.com/Hasokeyk/instagram/blob/main/examples/media/)                                                                         |
+| Carousel Share  | :x: | [COMING SOON](https://github.com/Hasokeyk/instagram/blob/main/examples/media/)                                                                         |
+| Share Likes  | :heavy_check_mark: | [instagram-media-like.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-like.php)                                    |
+| Share Unlike  | :heavy_check_mark: | [instagram-media-unlike.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unlike.php)                                |
+| Share Save  | :heavy_check_mark: | [instagram-media-save.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-save.php)                                    |
+| Share Unsave  | :heavy_check_mark: | [instagram-media-unsave.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unsave.php)                                |
+| Share Comment  | :heavy_check_mark: | [instagram-media-send-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-comment.php)                    |
+| Share delete comment  | :heavy_check_mark: | [instagram-media-del-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-del-comment.php)                      |
+| Send share to message  | :heavy_check_mark: | [instagram-media-send-media-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-media-inbox.php)            |
 
 ## Messaging Operation
 
-| Operation  | Work | Example |
-| ------------- | ------------- | ------------- |
+| Operation  | Work | Example                                                                                                                        |
+| ------------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------|
 | Send message as Text  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Send message as Link   | :x: | [HAZIRLANIYOR](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) |
+| Send message as Link   | :x: | [COMING SOON](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php)                          |
 | Send Heart  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
 | Send Image  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
 | Flame Text  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |

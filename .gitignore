@@ -3,3 +3,4 @@ vendor/
 index.php
 src/cache/*/
 assets/
+register.php

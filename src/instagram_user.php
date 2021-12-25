@@ -813,9 +813,9 @@
             $post_var = [
                 'status_type' => 'manual',
                 'expires_at'  => strtotime('+1 days'),
-                'text'        => ($status_text),
+                'text'        => $status_text,
                 '_uuid'       => '0ff470bf-e663-4a1d-a327-38603a77a1bc',
-                'emoji'       => ('😍'),
+                'emoji'       => $emoji,
                 'audience'    => 'mutual_follows',
             ];
             
@@ -826,7 +826,7 @@
             
         }
         
-        public function set_status_reply($status_id = 'I love ',$thread_id = '', $message = 'Status Message'){
+        public function set_status_reply($status_id = 'I love ', $thread_id = '', $message = 'Status Message'){
             
             $url      = 'https://i.instagram.com/api/v1/direct_v2/threads/broadcast/status_reply/';
             $post_var = [
@@ -850,6 +850,23 @@
             $json = $this->request($url, 'POST', $post_var);
             $json = json_decode($json['body']);
             
+            return $json;
+            
+        }
+        
+        public function set_biography($biography = 'Hi instagram'){
+            
+            $url       = 'https://i.instagram.com/api/v1/accounts/set_biography/';
+            $post_data = [
+                'raw_text'  => $biography,
+                'device_id' => $this->get_device_id(),
+                'guid'      => $this->get_guid(),
+                'phone_id'  => $this->get_phone_id(),
+            ];
+            $post_data = http_build_query(['signed_body' => 'SIGNATURE.'.json_encode($post_data)]);
+            $json = $this->request($url, 'POST', $post_data);
+            $json = json_decode($json['body']);
+    
             return $json;
             
         }

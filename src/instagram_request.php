@@ -8,16 +8,16 @@
         
         public  $headers;
         private $app_id    = '567067343352427';
-        private $phone_id  = '832f3947-2366-42c7-a49e-88136c36f7ad';
-        private $device_id = 'android-daa21d4b02905ea0';
-        private $guid      = 'f1c270c3-8663-40ef-8612-3dc8853b3459';
-        private $adid      = 'f5904e04-349a-48ca-8516-8555ae99660c';
+        private $phone_id  = '833f3947-2366-42c7-a49e-88136c36f7ad';
+        private $device_id = 'android-d96d1dea964853ad';
+        private $guid      = 'f1c270c4-8663-40ef-8612-3dc8853b3459';
+        private $adid      = 'f5904e05-349a-48ca-8516-8555ae99660c';
         
         public $cache_path   = (__DIR__).'/cache/';
         public $cache_prefix = 'insta';
         public $cache_time   = 10; //Minute
         
-        public $user_agent = 'Instagram 177.0.0.30.119 Android (22/5.1.1; 160dpi; 540x960; Google/google; google Pixel 2; x86; qcom; tr_TR; 276028050)';
+        public $user_agent = 'Instagram 215.0.0.27.359 Android (25/7.1.2; 160dpi; 540x960; Google/google; google Pixel 2; x86; android_x86; tr_TR; 337202363)';
         
         public $username;
         public $password;
@@ -159,7 +159,7 @@
                 $client = new \GuzzleHttp\Client([
                     'verify'  => false,
                     'headers' => $headers,
-                    'proxy' => ($this->proxy ?? null)
+                    'proxy'   => ($this->proxy ?? null)
                 ]);
                 
                 if($type == 'POST'){
@@ -178,9 +178,9 @@
             catch(GuzzleException $exception){
                 return [
                     'status'  => 'fail',
-                    'message' => $exception->getMessage()??'Empty',
-                    'headers' => $exception->getResponse()->getHeaders()??null,
-                    'body'    => $exception->getResponse()->getBody()->getContents()??null,
+                    'message' => $exception->getMessage() ?? 'Empty',
+                    'headers' => $exception->getResponse()->getHeaders() ?? null,
+                    'body'    => $exception->getResponse()->getBody()->getContents() ?? null,
                 ];
             }
             
