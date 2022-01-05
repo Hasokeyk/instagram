@@ -35,7 +35,7 @@
 https://www.patreon.com/hasokeyk
 
 ## SIKÇA SORULAN SORULAR
-<a href="https://github.com/hasokeyk/instagram/blob/docs/tr/sikca-sorulan-sorular.md.md">SSS'YE GİT</a>
+<a href="https://github.com/hasokeyk/instagram/blob/main/docs/tr/sikca-sorulan-sorular.md">SSS'YE GİT</a>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">

@@ -33,7 +33,7 @@
 | BTC | 12Set9KZGXWD64pbeGsdqZCJZofxyK77LP |
 
 ## FAQ
-<a href="https://github.com/hasokeyk/instagram/blob/docs/en/faq.md">GO FAQ</a>
+<a href="https://github.com/hasokeyk/instagram/blob/main/docs/en/faq.md">GO FAQ</a>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
