@@ -18,19 +18,26 @@
             
             $username = $username ?? $this->username;
             if($username != null){
-                
-                $url = 'https://www.instagram.com/web/search/topsearch/?query='.$username;
-                
-                $json = $this->request($url);
-                $json = json_decode($json['body']);
-                
-                $user_id = 0;
-                foreach($json->users as $user){
-                    if($username == $user->user->username){
-                        $user_id = $user->user->pk;
+                $cache = $this->cache($username.'-id');
+                if($cache === false){
+                    
+                    $url = 'https://www.instagram.com/web/search/topsearch/?query='.$username;
+    
+                    $json = $this->request($url);
+                    $json = json_decode($json['body']);
+    
+                    $user_id = 0;
+                    foreach($json->users as $user){
+                        if($username == $user->user->username){
+                            $user_id = $user->user->pk;
+                        }
                     }
+    
+                    $this->cache($username.'-id', $user_id);
+                    
+                }else{
+                    $user_id = $cache;
                 }
-                
                 return $user_id;
             }
             
@@ -110,7 +117,7 @@
             $cache = $this->cache('users/'.$user_id);
             if(!$cache){
                 if($user_id != null){
-                    $url  = 'https://i.instagram.com/api/v1/users/'.$user_id.'/usernameinfo';
+                    $url  = 'https://i.instagram.com/api/v1/users/'.$user_id.'/info/';
                     $json = $this->request($url);
                     $json = json_decode($json['body']);
                     $this->cache('users/'.$user_id, $json);
@@ -631,12 +638,50 @@
         
         public function get_my_followers(){
             
-            $url  = 'https://i.instagram.com/api/v1/friendships/44433622125/following/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true&rank_token=4c6947e0-bebe-4f69-a7bf-24be28dc4990';
+            $user_id = $this->get_user_id();
+            
+            $url  = 'https://i.instagram.com/api/v1/friendships/'.$user_id.'/followers/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true&rank_token=4c6947e0-bebe-4f69-a7bf-24be28dc4990';
             $json = $this->request($url);
             $json = json_decode($json['body']);
             
             return $json;
             
+        }
+        
+        public function get_my_following(){
+    
+            $user_id = $this->get_user_id();
+            
+            $url  = 'https://i.instagram.com/api/v1/friendships/'.$user_id.'/following/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true&rank_token=4c6947e0-bebe-4f69-a7bf-24be28dc4990';
+            $json = $this->request($url);
+            $json = json_decode($json['body']);
+            
+            return $json;
+            
+        }
+    
+        public function get_user_followers($username = null){
+        
+            $user_id = $this->get_user_id($username);
+        
+            $url  = 'https://i.instagram.com/api/v1/friendships/'.$user_id.'/followers/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true';
+            $json = $this->request($url);
+            $json = json_decode($json['body']);
+        
+            return $json;
+        
+        }
+    
+        public function get_user_following($username = null){
+        
+            $user_id = $this->get_user_id($username);
+        
+            $url  = 'https://i.instagram.com/api/v1/friendships/'.$user_id.'/following/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true&rank_token=4c6947e0-bebe-4f69-a7bf-24be28dc4990';
+            $json = $this->request($url);
+            $json = json_decode($json['body']);
+        
+            return $json;
+        
         }
         
         public function get_friendships_status_by_username($username = null){

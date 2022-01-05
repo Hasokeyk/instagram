@@ -32,6 +32,9 @@
 | ETH | 0x2091be5b1840b10a841376c366ec0475771b4ec8 |
 | BTC | 12Set9KZGXWD64pbeGsdqZCJZofxyK77LP |
 
+## FAQ
+<a href="https://github.com/hasokeyk/instagram/blob/docs/en/faq.md">GO FAQ</a>
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Contents</h2></summary>
@@ -70,7 +73,11 @@ Please read carefully.
 - You must have to "composer" application on your PC. For installation  https://getcomposer.org/download/
 - PHP 7.4 or above
 
-### Setup
+### File permissions
+
+Give permission to the following files and folders with chmod 777.
+
+`/vendor/hasokeyk/`
 
 ## Setup via Composer
 
@@ -205,24 +212,27 @@ If you want another accounts posts get_user_posts('hasokeyk') please use this.
 
 ## User operations
 
-| Operation                                      | Working | Example File |
-|------------------------------------------------| ------------- | ------------- |
-| Login                                          | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php) | 
-| 2-Factor Auth Login                            | :heavy_check_mark: | [instagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php) | 
-| Login width proxy                              | :heavy_check_mark: | [instagram-user-login-with-proxy.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login-with-proxy.php) | 
-| Getting posts of logged in account             | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php) |
-| Getting statictics of logged in account        | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php) |
+| Operation                                      | Working | Example File                                                                                                                                       |
+|------------------------------------------------| ------------- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Login                                          | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php)                                 | 
+| 2-Factor Auth Login                            | :heavy_check_mark: | [instagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php)           | 
+| Login width proxy                              | :heavy_check_mark: | [instagram-user-login-with-proxy.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login-with-proxy.php)           | 
+| Getting posts of logged in account             | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php)                                   |
+| Getting statictics of logged in account        | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php)                       |
 | Getting least Viewed of logged in account      | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
-| Getting most Viewed Users by Logged In         | :heavy_check_mark: | [instagram-user-my-most-seen-in-feed.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
-| Changing profile image                         | :heavy_check_mark: | [instagram-user-change-profil-pic.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-change-profil-pic.php) |
-| Follow an account                              | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
-| Unffollow an account                           | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
-| Unfollow the Account Itself                    | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php) |
-| Getting notification list of logged in account | :heavy_check_mark: | [instagram-user-my-notification.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-notification.php) |
-| Getting message request of logged in account   | :heavy_check_mark: | [instagram-user-my-pending-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-pending-inbox.php) |
-| Getting message inbox of logged in account     | :heavy_check_mark: | [instagram-user-my-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-inbox.php) |
-| Getting Account Followers                      | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-followers.php) |
-| Getting Post                                   | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-get-posts.php) |
+| Getting most Viewed Users by Logged In         | :heavy_check_mark: | [instagram-user-my-most-seen-in-feed.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php)  |
+| Changing profile image                         | :heavy_check_mark: | [instagram-user-change-profil-pic.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-change-profil-pic.php)         |
+| Follow an account                              | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php)                               |
+| Unffollow an account                           | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php)                               |
+| Unfollow the Account Itself                    | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php)                               |
+| Getting notification list of logged in account | :heavy_check_mark: | [instagram-user-my-notification.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-notification.php)             |
+| Getting message request of logged in account   | :heavy_check_mark: | [instagram-user-my-pending-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-pending-inbox.php)           |
+| Getting message inbox of logged in account     | :heavy_check_mark: | [instagram-user-my-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-inbox.php)                           |
+| Getting my account followers                   | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-followers.php)                   |
+| Getting my account gollowing                   | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-following.php)                   |
+| Getting user followers                         | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-followers.php)                      |
+| Getting user following                         | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-following.php)                      |
+| Getting Post                                   | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-get-posts.php)                         |
 
 
 ## Post share operations

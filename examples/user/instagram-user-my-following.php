@@ -12,7 +12,7 @@
     
     $login = $instagram->login->login_control();
     if($login){
-        $user = $instagram->user->get_my_followers();
+        $user = $instagram->user->get_my_following();
         print_r($user);
     }
     else{

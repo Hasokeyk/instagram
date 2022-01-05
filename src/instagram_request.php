@@ -199,7 +199,24 @@
         }
         
         public function get_guid(){
-            return $this->guid;
+            $cache = $this->cache('guid');
+            if($cache === false){
+                if(function_exists('com_create_guid')){
+                    $guid = $this->guid = mb_strtolower(str_replace(['{','}'], ['',''], com_create_guid()),'utf8');
+                }
+                else{
+                    mt_srand((double) microtime() * 10000);//optional for php 4.2.0 and up.
+                    $charid = strtoupper(md5(uniqid(rand(), true)));
+                    $hyphen = chr(45);// "-"
+                    $uuid   = chr(123)// "{"
+                              .substr($charid, 0, 8).$hyphen.substr($charid, 8, 4).$hyphen.substr($charid, 12, 4).$hyphen.substr($charid, 16, 4).$hyphen.substr($charid, 20, 12).chr(125);// "}"
+                    $guid = $this->guid = $uuid;
+                }
+                $this->cache('guid',$guid);
+                return $guid;
+            }else{
+                return $cache;
+            }
         }
         
         public function set_username($username){
