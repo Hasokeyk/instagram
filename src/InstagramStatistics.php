@@ -4,9 +4,6 @@ namespace Hasokeyk\Instagram;
 
 class InstagramStatistics extends InstagramRequest
 {
-    public $username;
-    public $password;
-    public $functions;
     public $posts;
 
     public function get_user_insights()

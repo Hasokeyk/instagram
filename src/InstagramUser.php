@@ -4,10 +4,6 @@ namespace Hasokeyk\Instagram;
 
 class InstagramUser extends InstagramRequest
 {
-    public $username;
-    public $password;
-    public $functions;
-
     public function get_user_posts($username = null)
     {
         $cache = $this->cache($username . '-posts');

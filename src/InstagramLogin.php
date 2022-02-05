@@ -6,10 +6,6 @@ use Exception;
 
 class InstagramLogin extends InstagramRequest
 {
-    public $username;
-    public $password;
-    public $functions;
-
     public function login($username = null, $password = null)
     {
         $username = $username ?? $this->username;

@@ -4,10 +4,6 @@ namespace Hasokeyk\Instagram;
 
 class InstagramUpload extends InstagramRequest
 {
-    public $username;
-    public $password;
-    public $functions;
-
     public function get_upload_session_id($upload_id = null, $r_upload_param = 0)
     {
         $upload_id = $upload_id ?? $this->get_upload_id();

@@ -4,10 +4,6 @@ namespace Hasokeyk\Instagram;
 
 class InstagramSmartEvents extends InstagramRequest
 {
-    public $username;
-    public $password;
-    public $functions;
-
     public function get_fake_following_profile($username = null)
     {
         $username = $username ?? $this->username;

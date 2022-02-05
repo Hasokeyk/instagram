@@ -4,10 +4,6 @@ namespace Hasokeyk\Instagram;
 
 class InstagramMedias extends InstagramRequest
 {
-    public $username;
-    public $password;
-    public $functions;
-
     public function get_post_likes($post_id = null)
     {
         if ($post_id != null) {

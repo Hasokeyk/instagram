@@ -4,9 +4,6 @@ namespace Hasokeyk\Instagram;
 
 class InstagramRegister extends InstagramRequest
 {
-    public $username;
-    public $password;
-    public $functions;
     public $user_info;
     public $register_cookie = null;
 
