@@ -112,21 +112,21 @@ sonraki işlemleriniz daha hızlı bir şekilde çalışacaktır.
 ```php
 <?php
 
-    use instagram\instagram;
-    
+    use Hasokeyk\Instagram\Instagram;
+
     require "/vendor/autoload.php";
-    
+
     $username = 'username';
     $password = 'password';
-    
-    $instagram = new instagram($username,$password);
+
+    $instagram = new Instagram($username,$password);
     $login = $instagram->login->login();
     if($login){
         echo 'Login success';
     }else{
         echo 'Login Fail';
     }
-    
+
     //LOGIN CONTROL
     $login_control = $instagram->login->login_control();
     if($login_control){
@@ -146,15 +146,15 @@ Bir dahaki girişlerde eğer ipniz değişmediyse kod sormadan giriş yapabilirs
 ```php
 <?php
 
-    use instagram\instagram;
-    
+    use Hasokeyk\Instagram\Instagram;
+
     require "/vendor/autoload.php";
-    
+
     $username = 'username';
     $password = 'password';
-    
-    $instagram    = new instagram($username, $password);
-    
+
+    $instagram    = new Instagram($username, $password);
+
     if(isset($_REQUEST['two_factor_login_code'], $_REQUEST['two_factor_identifier']) and !empty($_REQUEST['two_factor_login_code']) and !empty($_REQUEST['two_factor_identifier'])){
         $code             = trim($_REQUEST['two_factor_login_code']);
         $token            = trim($_REQUEST['two_factor_identifier']);
@@ -188,22 +188,22 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 
 ```php
 <?php
-    
-    use instagram\instagram;
-    
+
+    use Hasokeyk\Instagram\Instagram;
+
     require "../vendor/autoload.php";
-    
+
     $username = 'username';
     $password = 'password';
-    
-    $instagram = new instagram($username,$password);
-    
+
+    $instagram = new Instagram($username,$password);
+
     $login = $instagram->login->login_control();
     if($login){
-    
+
         $user_posts = $instagram->user->get_user_posts();
         print_r($user_posts);
-        
+
     }else{
         echo 'Login Fail';
     }
@@ -218,8 +218,8 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 
 | İşlemler                                                        | Çalışıyor | Örnek Dosya                                                                                                                                  |
 |-----------------------------------------------------------------| ------------- |----------------------------------------------------------------------------------------------------------------------------------------------|
-| Kullanıcı Girişi                                                | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php)                           | 
-| iki Adımlı Kullanıcı Girişi                                     | :heavy_check_mark: | [iinstagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php)    | 
+| Kullanıcı Girişi                                                | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php)                           |
+| iki Adımlı Kullanıcı Girişi                                     | :heavy_check_mark: | [iinstagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php)    |
 | Giriş Yapmış Kullanıcı Bilgisi Getirme                          | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php)                             |
 | Giriş Yapmış Kullanıcı İstatistik Getirme                       | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php)                 |
 | Giriş Yapmış Kullanıcının En Az Etkileşimde Olduğu Kullanıcılar | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |

@@ -108,21 +108,21 @@ You must login before each operation. In your first login operation, the system 
 ```php
 <?php
 
-    use instagram\instagram;
-    
+    use Hasokeyk\Instagram\Instagram;
+
     require "/vendor/autoload.php";
-    
+
     $username = 'username';
     $password = 'password';
-    
-    $instagram = new instagram($username,$password);
+
+    $instagram = new Instagram($username,$password);
     $login = $instagram->login->login();
     if($login){
         echo 'Login success';
     }else{
         echo 'Login Fail';
     }
-    
+
     //LOGIN CONTROL
     $login_control = $instagram->login->login_control();
     if($login_control){
@@ -142,15 +142,15 @@ After your next logins, if yout IP is not changed, you can login without asking 
 ```php
 <?php
 
-    use instagram\instagram;
-    
+    use Hasokeyk\Instagram\Instagram;
+
     require "/vendor/autoload.php";
-    
+
     $username = 'username';
     $password = 'password';
-    
-    $instagram    = new instagram($username, $password);
-    
+
+    $instagram    = new Instagram($username, $password);
+
     if(isset($_REQUEST['two_factor_login_code'], $_REQUEST['two_factor_identifier']) and !empty($_REQUEST['two_factor_login_code']) and !empty($_REQUEST['two_factor_identifier'])){
         $code             = trim($_REQUEST['two_factor_login_code']);
         $token            = trim($_REQUEST['two_factor_identifier']);
@@ -179,27 +179,27 @@ After your next logins, if yout IP is not changed, you can login without asking 
 
 # Getting user posts
 
-When you run the below code, you will get last 50 posts of user you are logged into. 
+When you run the below code, you will get last 50 posts of user you are logged into.
 If you want another accounts posts get_user_posts('hasokeyk') please use this.
 
 ```php
 <?php
-    
-    use instagram\instagram;
-    
+
+    use Hasokeyk\Instagram\Instagram;
+
     require "../vendor/autoload.php";
-    
+
     $username = 'username';
     $password = 'password';
-    
-    $instagram = new instagram($username,$password);
-    
+
+    $instagram = new Instagram($username,$password);
+
     $login = $instagram->login->login_control();
     if($login){
-    
+
         $user_posts = $instagram->user->get_user_posts();
         print_r($user_posts);
-        
+
     }else{
         echo 'Login Fail';
     }
@@ -214,9 +214,9 @@ If you want another accounts posts get_user_posts('hasokeyk') please use this.
 
 | Operation                                      | Working | Example File                                                                                                                                       |
 |------------------------------------------------| ------------- |----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Login                                          | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php)                                 | 
-| 2-Factor Auth Login                            | :heavy_check_mark: | [instagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php)           | 
-| Login width proxy                              | :heavy_check_mark: | [instagram-user-login-with-proxy.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login-with-proxy.php)           | 
+| Login                                          | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php)                                 |
+| 2-Factor Auth Login                            | :heavy_check_mark: | [instagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php)           |
+| Login width proxy                              | :heavy_check_mark: | [instagram-user-login-with-proxy.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login-with-proxy.php)           |
 | Getting posts of logged in account             | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php)                                   |
 | Getting statictics of logged in account        | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php)                       |
 | Getting least Viewed of logged in account      | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
