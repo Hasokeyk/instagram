@@ -22,7 +22,7 @@ class InstagramRequest
     private $guid = 'f1c270c4-8663-40ef-8612-3dc8853b3459';
     private $adid = 'f5904e05-349a-48ca-8516-8555ae99660c';
 
-    public function __construct($username, $password, $functions = null)
+    public function __construct($username, $password, Instagram $functions)
     {
         $this->username = $username;
         $this->password = $password;
