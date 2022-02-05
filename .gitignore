@@ -4,3 +4,5 @@ index.php
 src/cache/*
 assets/
 register.php
+
+.php-cs-fixer.cache
