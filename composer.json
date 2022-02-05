@@ -17,6 +17,8 @@
         "guzzlehttp/guzzle":"^7.0.1"
     },
     "autoload": {
-        "files": ["src/instagram.php"]
+        "psr-4": {
+            "Hasokeyk\\Instagram\\": "src"
+        }
     }
 }
