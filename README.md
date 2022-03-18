@@ -57,6 +57,12 @@
   </ol>
 </details>
 
+# Hasan Yüksektepe
+[![Linkedin Badge](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hasan-yuksektepe/)
+[![Twitter Badge](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/Hasokeyk)
+[![Github Badge](https://img.shields.io/badge/github-333?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alihandemirdas)
+![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=hasokeyk.instagram&left_text=Download)
+
 ## About Project
 
 This project is made in PHP library of all instagram mobile app features. This library can send exactly same queries like mobile app
@@ -108,7 +114,7 @@ You must login before each operation. In your first login operation, the system 
 ```php
 <?php
 
-    use Hasokeyk\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram\Instagram;
 
     require "/vendor/autoload.php";
 
@@ -142,7 +148,7 @@ After your next logins, if yout IP is not changed, you can login without asking 
 ```php
 <?php
 
-    use Hasokeyk\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram\Instagram;
 
     require "/vendor/autoload.php";
 
@@ -185,7 +191,7 @@ If you want another accounts posts get_user_posts('hasokeyk') please use this.
 ```php
 <?php
 
-    use Hasokeyk\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram\Instagram;
 
     require "../vendor/autoload.php";
 

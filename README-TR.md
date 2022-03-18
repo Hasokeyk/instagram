@@ -60,6 +60,13 @@ https://www.patreon.com/hasokeyk
   </ol>
 </details>
 
+# Hasan Yüksektepe
+[![Linkedin Badge](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hasan-yuksektepe/)
+[![Twitter Badge](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/Hasokeyk)
+[![Github Badge](https://img.shields.io/badge/github-333?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alihandemirdas)
+![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=hasokeyk.instagram&left_text=Download)
+
+
 ## Proje Hakkında
 
 Bu proje instagram mobil uygulamasının kabiliyetlerini PHP kütüphanesinde kullanabilmek amacıyla yapılmıştır. Mobil
@@ -112,7 +119,7 @@ sonraki işlemleriniz daha hızlı bir şekilde çalışacaktır.
 ```php
 <?php
 
-    use Hasokeyk\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram\Instagram;
 
     require "/vendor/autoload.php";
 
@@ -146,7 +153,7 @@ Bir dahaki girişlerde eğer ipniz değişmediyse kod sormadan giriş yapabilirs
 ```php
 <?php
 
-    use Hasokeyk\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram\Instagram;
 
     require "/vendor/autoload.php";
 
@@ -189,7 +196,7 @@ paylaşımlarını getirmek için get_user_posts('hasokeyk') yazmanız yeterlidi
 ```php
 <?php
 
-    use Hasokeyk\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram\Instagram;
 
     require "../vendor/autoload.php";
 

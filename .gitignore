@@ -6,3 +6,4 @@ assets/
 register.php
 
 .php-cs-fixer.cache
+*.mp4
