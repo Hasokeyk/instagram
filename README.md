@@ -23,6 +23,8 @@
     <a href="https://github.com/hasokeyk/instagram/issues">Feedback</a>
     <br>
     <a href="https://github.com/Hasokeyk/instagram/blob/main/README-TR.md" style="font-size:24px">Türkçe doküman için tıklayın</a>
+    <br>
+    <a href="https://github.com/Hasokeyk/instagram-pro" style="font-size:24px">🌟🌟 INSTAGRAM PRO 🌟🌟</a>
 </p>
 
 ## Donation
