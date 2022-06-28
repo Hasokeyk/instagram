@@ -7,3 +7,4 @@ register.php
 
 .php-cs-fixer.cache
 *.mp4
+/logo.jpg
