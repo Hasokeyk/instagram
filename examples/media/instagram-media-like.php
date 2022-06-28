@@ -1,19 +1,22 @@
 <?php
 
-use Hasokeyk\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram;
 
-require "../../vendor/autoload.php";
+    require "../../vendor/autoload.php";
 
-$username = 'username';
-$password = 'password';
+    $username = 'username';
+    $password = 'password';
 
-$instagram = new Instagram($username, $password);
-$instagram->login->login();
+    $instagram = new Instagram($username, $password);
+    $instagram->login->login();
 
-$login = $instagram->login->login_control();
-if ($login) {
-    $post = $instagram->medias->like('2546428212937660604');
-    print_r($post);
-} else {
-    echo 'Login Fail';
-}
+    $login = $instagram->login->login_control();
+    if($login){
+
+        $post = $instagram->medias->like('2546428212937660604');
+        print_r($post);
+
+    }
+    else{
+        echo 'Login Fail';
+    }

@@ -29,13 +29,78 @@
 
 ## Donation
 
+patreon: https://www.patreon.com/hasokeyk
+
 | Coin | Wallet |
 | ------------- | ------------- |
 | ETH | 0x2091be5b1840b10a841376c366ec0475771b4ec8 |
 | BTC | 12Set9KZGXWD64pbeGsdqZCJZofxyK77LP |
 
+# Packet Features
+
+| Feature                                | Instagram                         | Instagram Pro                                     |
+|----------------------------------------|-----------------------------------|---------------------------------------------------|
+| 🌟 Use Proxy                           | :x:                               | :heavy_check_mark:                                |
+| Login                                  | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Two Factor Login                       | :heavy_check_mark:<br/>(Just SMS) | :heavy_check_mark:<br/>(SMS,Whatsapp,Duo,3th App) |
+| 🌟 Register                            | :x:                               | :heavy_check_mark:                                |
+| 🌟 Add Duo                             | :x:                               | :heavy_check_mark:                                |
+| 🌟 Facebook Remover                    | :x:                               | :heavy_check_mark:                                |
+| 🌟 Change Password                     | :x:                               | :heavy_check_mark:                                |
+| 🌟 Change Email                        | :x:                               | :heavy_check_mark:                                |
+| 🌟 A2F Disable                         | :x:                               | :heavy_check_mark:                                |
+| Get My Inbox                           | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Send Message (Confetti,Heart,Gift Box) | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Send Photo Message                     | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Send Link Message                      | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Send Story Message                     | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Send Post Message                      | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get User Info                          | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get User Post                          | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get User Story                         | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Share Post                             | :heavy_check_mark:                | :heavy_check_mark:                                |
+| 🌟 Share Reels                         | :x:                               | :heavy_check_mark:                                |
+| 🌟 Share Story                         | :x:                               | :heavy_check_mark:                                |
+| 🌟 Delete Post                         | :x:                               | :heavy_check_mark:                                |
+| 🌟 Get User Statistic                  | :x:                               | :heavy_check_mark:                                |
+| 🌟 Get Post Statistic                  | :x:                               | :heavy_check_mark:                                |
+| 🌟 **(New)** Post Pinning              | :x:                               | :heavy_check_mark:                                |
+| 🌟 **(New)** Post Unpinning            | :x:                               | :heavy_check_mark:                                |
+| 🌟 **(New)** Story Like                | :x:                               | :heavy_check_mark:                                |
+| 🌟 **(New)** Story Unlike              | :x:                               | :heavy_check_mark:                                |
+| 🌟 **(New)** Change Status             | :heavy_check_mark:                | :heavy_check_mark:                                |
+| 🌟 **(New)** Change Status Reply       | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get Followers                          | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get Followings                         | :heavy_check_mark:                | :heavy_check_mark:                                |
+| 🌟 Get Fake Followings                 | :x:                               | :heavy_check_mark:                                |
+| 🌟 Get Fake Followers                  | :x:                               | :heavy_check_mark:                                |
+| 🌟 Get Instagram Score                 | :x:                               | :heavy_check_mark:                                |
+| Get Notifications                      | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Change Avatar                          | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Follow User                            | :heavy_check_mark:                | :heavy_check_mark:                                |
+| UnFollow User                          | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Like Post                              | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Unlike Post                            | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Save Post                              | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Accept Follow Request                  | :heavy_check_mark:                | :heavy_check_mark:                                |
+| 🌟 Don't Follow Me                     | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get Pedding Message                    | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get My Collections                     | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Create Collection                      | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Edit Collection                        | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Del Collection                         | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Send Comment To Post                   | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Delete Comment To Post                 | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get Hashtag Info                       | :heavy_check_mark:                | :heavy_check_mark:                                |
+| 🌟 Get My Secret Followers             | :heavy_check_mark:                | :heavy_check_mark:                                |
+| 🌟 Who Viewed My Profile               | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get Me Most Seen Feed                  | :heavy_check_mark:                | :heavy_check_mark:                                |
+| Get Me Least Interacted With           | :heavy_check_mark:                | :heavy_check_mark:                                |
+
 ## FAQ
-<a href="https://github.com/hasokeyk/instagram/blob/main/docs/en/faq.md">GO FAQ</a>
+
+<a href="https://github.com/hasokeyk/instagram/blob/main/docs/en/faq.md">GO
+FAQ</a>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -60,6 +125,7 @@
 </details>
 
 # Hasan Yüksektepe
+
 [![Linkedin Badge](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hasan-yuksektepe/)
 [![Twitter Badge](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/Hasokeyk)
 [![Github Badge](https://img.shields.io/badge/github-333?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alihandemirdas)
@@ -67,7 +133,8 @@
 
 ## About Project
 
-This project is made in PHP library of all instagram mobile app features. This library can send exactly same queries like mobile app
+This project is made in PHP library of all instagram mobile app features. This
+library can send exactly same queries like mobile app
 and returns server responses.
 
 <!-- GETTING STARTED -->
@@ -78,7 +145,8 @@ Please read carefully.
 
 ### Requirements
 
-- You must have to "composer" application on your PC. For installation  https://getcomposer.org/download/
+- You must have to "composer" application on your PC. For
+  installation  https://getcomposer.org/download/
 - PHP 7.4 or above
 
 ### File permissions
@@ -89,7 +157,8 @@ Give permission to the following files and folders with chmod 777.
 
 ## Setup via Composer
 
-* you must determine your root(working) folder after that open console ( terminal )
+* you must determine your root(working) folder after that open console (
+  terminal )
   ```sh
   composer require hasokeyk/instagram
   ```
@@ -111,12 +180,13 @@ Give permission to the following files and folders with chmod 777.
 
 # Login
 
-You must login before each operation. In your first login operation, the system will be cached and your operation will run faster.
+You must login before each operation. In your first login operation, the system
+will be cached and your operation will run faster.
 
 ```php
 <?php
 
-    use Hasokeyk\Instagram\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram;
 
     require "/vendor/autoload.php";
 
@@ -144,13 +214,16 @@ You must login before each operation. In your first login operation, the system 
 
 # Two factor authorization
 
-In your first login attemp, if two factor authorization are enabled, instagram will send you a code. If you enter the code into the input area, yout login operation will be completed automatically.
-After your next logins, if yout IP is not changed, you can login without asking code.
+In your first login attemp, if two factor authorization are enabled, instagram
+will send you a code. If you enter the code into the input area, yout login
+operation will be completed automatically.
+After your next logins, if yout IP is not changed, you can login without asking
+code.
 
 ```php
 <?php
 
-    use Hasokeyk\Instagram\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram;
 
     require "/vendor/autoload.php";
 
@@ -187,13 +260,14 @@ After your next logins, if yout IP is not changed, you can login without asking 
 
 # Getting user posts
 
-When you run the below code, you will get last 50 posts of user you are logged into.
+When you run the below code, you will get last 50 posts of user you are logged
+into.
 If you want another accounts posts get_user_posts('hasokeyk') please use this.
 
 ```php
 <?php
 
-    use Hasokeyk\Instagram\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram;
 
     require "../vendor/autoload.php";
 
@@ -216,89 +290,20 @@ If you want another accounts posts get_user_posts('hasokeyk') please use this.
 
 <!-- ROADMAP -->
 
-## Road Map
-
-## User operations
-
-| Operation                                      | Working | Example File                                                                                                                                       |
-|------------------------------------------------| ------------- |----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Login                                          | :heavy_check_mark: | [instagram-user-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php)                                 |
-| 2-Factor Auth Login                            | :heavy_check_mark: | [instagram-user-two-factor-login.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-two-factor-login.php)           |
-| Login width proxy                              | :heavy_check_mark: | [instagram-user-login-with-proxy.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login-with-proxy.php)           |
-| Getting posts of logged in account             | :heavy_check_mark: | [instagram-user-info.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-info.php)                                   |
-| Getting statictics of logged in account        | :heavy_check_mark: | [instagram-user-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-statistics.php)                       |
-| Getting least Viewed of logged in account      | :heavy_check_mark: | [instagram-user-least-interacted-with.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php) |
-| Getting most Viewed Users by Logged In         | :heavy_check_mark: | [instagram-user-my-most-seen-in-feed.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-least-interacted-with.php)  |
-| Changing profile image                         | :heavy_check_mark: | [instagram-user-change-profil-pic.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-change-profil-pic.php)         |
-| Follow an account                              | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php)                               |
-| Unffollow an account                           | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php)                               |
-| Unfollow the Account Itself                    | :heavy_check_mark: | [instagram-user-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-follow.php)                               |
-| Getting notification list of logged in account | :heavy_check_mark: | [instagram-user-my-notification.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-notification.php)             |
-| Getting message request of logged in account   | :heavy_check_mark: | [instagram-user-my-pending-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-pending-inbox.php)           |
-| Getting message inbox of logged in account     | :heavy_check_mark: | [instagram-user-my-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-inbox.php)                           |
-| Getting my account followers                   | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-followers.php)                   |
-| Getting my account gollowing                   | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-my-following.php)                   |
-| Getting user followers                         | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-followers.php)                      |
-| Getting user following                         | :heavy_check_mark: | [instagram-user-my-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-following.php)                      |
-| Getting Post                                   | :heavy_check_mark: | [instagram-user-get-posts.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-get-posts.php)                         |
-
-
-## Post share operations
-
-| Operation  | Work | Example                                                                                                                                                |
-| ------------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Getting share statistics | :heavy_check_mark: | [instagram-user-get-posts-statistics.php](https://github.com/Hasokeyk/instagram/blob/main/examples/statistics/instagram-user-get-posts-statistics.php) |
-| Image Share  | :heavy_check_mark: | [instagram-media-share-photo.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-share-photo.php)                      |
-| Video Share  | :x: | [COMING SOON](https://github.com/Hasokeyk/instagram/blob/main/examples/media/)                                                                         |
-| Story Share  | :x: | [COMING SOON](https://github.com/Hasokeyk/instagram/blob/main/examples/media/)                                                                         |
-| Carousel Share  | :x: | [COMING SOON](https://github.com/Hasokeyk/instagram/blob/main/examples/media/)                                                                         |
-| Share Likes  | :heavy_check_mark: | [instagram-media-like.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-like.php)                                    |
-| Share Unlike  | :heavy_check_mark: | [instagram-media-unlike.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unlike.php)                                |
-| Share Save  | :heavy_check_mark: | [instagram-media-save.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-save.php)                                    |
-| Share Unsave  | :heavy_check_mark: | [instagram-media-unsave.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-unsave.php)                                |
-| Share Comment  | :heavy_check_mark: | [instagram-media-send-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-comment.php)                    |
-| Share delete comment  | :heavy_check_mark: | [instagram-media-del-comment.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-del-comment.php)                      |
-| Send share to message  | :heavy_check_mark: | [instagram-media-send-media-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/media/instagram-media-send-media-inbox.php)            |
-
-## Messaging Operation
-
-| Operation  | Work | Example                                                                                                                        |
-| ------------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------|
-| Send message as Text  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Send message as Link   | :x: | [COMING SOON](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-user-login.php)                          |
-| Send Heart  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Send Image  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Flame Text  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Message with present  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Message with confetti  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-| Message with heart  | :heavy_check_mark: | [instagram-users-send-inbox.php](https://github.com/Hasokeyk/instagram/blob/main/examples/user/instagram-users-send-inbox.php) |
-
-## Smart Operation
-
-| Operation  | Work | Example |
-| ------------- | ------------- | ------------- |
-| Fake followeing detection | :heavy_check_mark: | [instagram-smart-get-fake-followers-profile.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-fake-followers-profile.php) |
-| Fake followers detection | :heavy_check_mark: | [instagram-smart-get-fake-following-profile.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-fake-following-profile.php) |
-| Accounts You Should Follow  | :heavy_check_mark: | [instagram-smart-get-my-must-follow.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-must-follow.php) |
-| Secret Followers  | :heavy_check_mark: | [instagram-smart-get-my-secret-followers.php](https://github.com/Hasokeyk/instagram/blob/main/examples/smart/instagram-smart-get-my-secret-followers.php) |
-
 ## Contributors
+
 Asım Murat YILMAZ - [GITHUB](https://github.com/asiminnesli)
 
 ## License
 
-You can download and use it as long as this project is under development. If used for other purposes
-The person who wrote the codes is not responsible. By downloading and using this project, you agree to this.
-
-## Donate
-
-patreon: https://www.patreon.com/hasokeyk
-
+You can download and use it as long as this project is under development. If
+used for other purposes
+The person who wrote the codes is not responsible. By downloading and using this
+project, you agree to this.
 
 ## Contact
 
 Hasan Yüksektepe - [INSTAGRAM](https://instagram.com/hasokeyk)
-
 Website : [https://hayatikodla.net](https://hayatikodla.net)
 
 

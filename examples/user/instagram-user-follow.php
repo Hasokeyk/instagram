@@ -1,31 +1,32 @@
 <?php
 
-use Hasokeyk\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram;
 
-require "../../vendor/autoload.php";
+    require "../../vendor/autoload.php";
 
-$username = 'username';
-$password = 'password';
+    $username = 'username';
+    $password = 'password';
 
-$instagram = new Instagram($username, $password);
-$instagram->login->login();
+    $instagram = new Instagram($username, $password);
+    $instagram->login->login();
 
-$login = $instagram->login->login_control();
-if ($login) {
-    //FOLLOW
-    $user = $instagram->user->follow('yazilimvegirisim');
-    print_r($user);
-    //FOLLOW
+    $login = $instagram->login->login_control();
+    if($login){
+        //FOLLOW
+        $user = $instagram->user->follow('yazilimvegirisim');
+        print_r($user);
+        //FOLLOW
 
-    //UNFOLLOW
-    $user = $instagram->user->unfollow('yazilimvegirisim');
-    print_r($user);
-    //UNFOLLOW
+        //UNFOLLOW
+        $user = $instagram->user->unfollow('yazilimvegirisim');
+        print_r($user);
+        //UNFOLLOW
 
-    //UNFOLLOW ME
-    $user = $instagram->user->unfollow_me('yazilimvegirisim');
-    print_r($user);
-//UNFOLLOW ME
-} else {
-    echo 'Login Fail';
-}
+        //UNFOLLOW ME
+        $user = $instagram->user->unfollow_me('yazilimvegirisim');
+        print_r($user);
+        //UNFOLLOW ME
+    }
+    else{
+        echo 'Login Fail';
+    }

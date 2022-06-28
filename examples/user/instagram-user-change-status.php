@@ -1,27 +1,29 @@
 <?php
 
-use Hasokeyk\Instagram\Instagram;
+    use Hasokeyk\Instagram\Instagram;
 
-require "../../vendor/autoload.php";
+    require "../../vendor/autoload.php";
 
-$username = 'username';
-$password = 'password';
+    $username = 'username';
+    $password = 'password';
 
-$instagram = new Instagram($username, $password);
-$login = $instagram->login->login();
+    $instagram = new Instagram($username, $password);
+    $login     = $instagram->login->login();
 
-//LOGIN CONTROL
-$login_control = $instagram->login->login_control();
-if ($login_control) {
-    //EMOJILIST : https://www.utf8-chartable.de/unicode-utf8-table.pl?start=128512
+    //LOGIN CONTROL
+    $login_control = $instagram->login->login_control();
+    if($login_control){
+        //EMOJILIST : https://www.utf8-chartable.de/unicode-utf8-table.pl?start=128512
 
-    $action = $instagram->user->set_status('I love Code', '😡');
-    if ($action->status == 'ok') {
-        echo 'Status changed';
-    } else {
-        echo 'Status change error';
+        $action = $instagram->user->set_my_status('I love Code', '😡');
+        if($action->status == 'ok'){
+            echo 'Status changed';
+        }
+        else{
+            echo 'Status change error';
+        }
     }
-} else {
-    echo 'Login False';
-}
-//LOGIN CONTROL
+    else{
+        echo 'Login False';
+    }
+    //LOGIN CONTROL
