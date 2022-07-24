@@ -22,7 +22,8 @@
   "minimum-stability":"stable",
   "require":{
     "guzzlehttp/guzzle":"^7.4.2",
-    "ext-json":"*"
+    "ext-json":"*",
+    "ext-curl": "*"
   },
   "autoload":{
     "psr-4":{

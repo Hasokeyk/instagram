@@ -143,7 +143,7 @@
                 ];
                 $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
 
-                $json = $this->request($url, 'POST', $post_data);
+                $json = $this->post($url, 'POST', $post_data);
                 $json = json_decode($json['body']);
 
                 return $json;

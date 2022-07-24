@@ -165,7 +165,7 @@
                 $post_hashquery = $this->get_post_queryhash();
                 $user_id        = $this->get_user_id($username);
                 $url            = 'https://www.instagram.com/graphql/query/?query_hash='.$post_hashquery.'&variables={"id":"'.$user_id.'","first":50}';
-                $json           = $this->request($url);
+                $json           = $this->get($url);
                 $json           = json_decode($json['body'])->data->user;
 
                 $this->cache($username.'-posts', $json);
