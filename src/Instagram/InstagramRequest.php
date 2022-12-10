@@ -16,7 +16,7 @@
         public $cache_path = (__DIR__).'/../cache/';
         public $cache_time = 10; //Minute
 
-        public  $proxy      = 'http://185.122.200.168:8118';
+        public  $proxy      = '';
         public  $client;
         public  $headers    = [];
         private $app_id     = '567067343352427';
@@ -24,7 +24,8 @@
         private $phone_id   = '01ec3ad7-f01e-4b4f-ba81-26ad8a444582';
         private $guid;
         private $adid;
-        public  $user_agent = 'Instagram 219.0.0.12.117 Android (25/7.1.2; 320dpi; 900x1600; xiaomi; Redmi Note 8 Pro; d2q; qcom; tr_TR; 346138365)';
+//        public  $user_agent = 'Instagram 219.0.0.12.117 Android (25/7.1.2; 320dpi; 900x1600; xiaomi; Redmi Note 8 Pro; d2q; qcom; tr_TR; 346138365)';
+        public  $user_agent = 'Instagram 257.1.0.13.119 (iPhone14,3; iOS 16_1; tr_TR; tr-TR; scale=3.00; 1284x2778; 409247554) AppleWebKit/420+';
 
         function __construct($username, $password, $functions){
             $this->username  = $username;
@@ -85,7 +86,7 @@
             return $headers;
         }
 
-        public function get($url = '', $headers = null, $cookie = true){
+        public function get($url = '', $headers = null, $cookie = true, $proxy_use = true){
             try{
                 $headers = $headers ?? $this->ready_header();
                 $options = [
@@ -95,6 +96,10 @@
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
                     ]
                 ];
+
+                if(isset($this->proxy) and !empty($this->proxy) and $proxy_use === true){
+                    $options['proxy'] = $this->proxy;
+                }
 
                 $res = $this->client->get($url, $options);
                 return [
@@ -113,7 +118,7 @@
             }
         }
 
-        public function post($url = null, $post_data = null, $headers = null){
+        public function post($url = null, $post_data = null, $headers = null, $proxy_use = true){
             try{
 
                 $headers = $headers ?? $this->ready_header();
@@ -125,6 +130,10 @@
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
                     ]
                 ];
+
+                if(isset($this->proxy) and !empty($this->proxy) and $proxy_use === true){
+                    $options['proxy'] = $this->proxy;
+                }
 
                 $res = $this->client->post($url, $options);
                 return [
@@ -238,7 +247,8 @@
             $cache_file = $this->cache('csrftoken');
             if($cache_file == false){
                 $csrftoken_html = $this->get($url, $this->headers);
-                preg_match('|{"config":{"csrf_token":"(.*?)"|is', $csrftoken_html['body'], $csrftoken);
+                $new_html = str_replace("\\","",$csrftoken_html['body']);
+                preg_match('|{"config":{"csrf_token":"(.*?)"|is', $new_html, $csrftoken);
                 $csrftoken = $csrftoken[1];
                 $this->cache('csrftoken', $csrftoken);
             }
@@ -466,7 +476,7 @@
 
             $cookies_array = [
                 'mid'       => 'YB2r4AABAAERcl5ESNxLjr_tt4Q5',
-                'csrftoken' => $this->get_csrftoken(),
+//                'csrftoken' => $this->get_csrftoken(),
             ];
 
             if($session_id === true){

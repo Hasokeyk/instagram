@@ -30,7 +30,7 @@
                 $url       = $this->intagram_api_url.'/api/v1/accounts/login/';
                 $password  = $this->encrypt($password);
                 $post_data = [
-                    'jazoest'             => '22453',
+                    'jazoest'             => '22522',
                     'country_codes'       => '[{"country_code":"90","source":["sim","network","default","sim"]}]',
                     'phone_id'            => $this->get_phone_id(),
                     'enc_password'        => $password,
@@ -44,12 +44,12 @@
                 ];
                 $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
 
-                $cookie = [
-                    'mid'       => $this->get_mid(),
-                    'csrftoken' => $this->get_csrftoken(),
-                ];
+//                $cookie = [
+//                    'mid'       => $this->get_mid(),
+//                    'csrftoken' => $this->get_csrftoken(),
+//                ];
 
-                $result = $this->post($url, $post_data, $this->headers, $cookie);
+                $result = $this->post($url, $post_data, $this->headers);
                 return $this->login_check($result);
 
             }

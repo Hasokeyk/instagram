@@ -139,16 +139,18 @@
                     $url = 'https://www.instagram.com/web/search/topsearch/?query='.$username;
 
                     $json = $this->get($url);
-                    $json = json_decode($json['body']);
+                    if($json != null){
+                        $json = json_decode($json['body']);
 
-                    $user_id = 0;
-                    foreach($json->users as $user){
-                        if($username == $user->user->username){
-                            $user_id = $user->user->pk;
+                        $user_id = 0;
+                        foreach($json->users as $user){
+                            if($username == $user->user->username){
+                                $user_id = $user->user->pk;
+                            }
                         }
-                    }
 
-                    $this->cache('users/'.$username.'-id', $user_id);
+                        $this->cache('users/'.$username.'-id', $user_id);
+                    }
                 }
                 else{
                     $user_id = $cache;
