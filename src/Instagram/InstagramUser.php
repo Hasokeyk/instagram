@@ -2,16 +2,18 @@
 
     namespace Hasokeyk\Instagram;
 
-    class InstagramUser{
+    class InstagramUser extends InstagramRequest{
 
         public $username;
         public $password;
-        public $request;
+        public $functions;
 
-        function __construct($username, $password, $request){
-            $this->username = $username;
-            $this->password = $password;
-            $this->request  = $request;
+        function __construct($username, $password, $functions){
+            parent::__construct($username, $password, $functions);
+
+            $this->username  = $username;
+            $this->password  = $password;
+            $this->functions = $functions;
         }
 
         public function get_my_phone_number($username = null){
@@ -19,12 +21,12 @@
             $username = $username ?? $this->username;
             if($username != null){
 
-                $cache = $this->request->cache('current_user');
+                $cache = $this->cache('current_user');
                 if($cache === false){
                     $url  = 'https://i.instagram.com/api/v1/accounts/current_user/?edit=true';
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     $json = json_decode($json['body']);
-                    $this->request->cache('current_user', $json);
+                    $this->cache('current_user', $json);
                     return $json->user->phone_number;
                 }
                 else{
@@ -42,12 +44,12 @@
             $username = $username ?? $this->username;
             if($username != null){
 
-                $cache = $this->request->cache('current_user');
+                $cache = $this->cache('current_user');
                 if($cache === false){
                     $url  = 'https://i.instagram.com/api/v1/accounts/current_user/?edit=true';
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     $json = json_decode($json['body']);
-                    $this->request->cache('current_user', $json);
+                    $this->cache('current_user', $json);
                     return $json->user->email;
                 }
                 else{
@@ -65,12 +67,12 @@
             $username = $username ?? $this->username;
             if($username != null){
 
-                $cache = $this->request->cache('current_user');
+                $cache = $this->cache('current_user');
                 if($cache === false){
                     $url  = 'https://i.instagram.com/api/v1/accounts/current_user/?edit=true';
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     $json = json_decode($json['body']);
-                    $this->request->cache('current_user', $json);
+                    $this->cache('current_user', $json);
                     return $json->user->full_name;
                 }
                 else{
@@ -88,12 +90,12 @@
             $username = $username ?? $this->username;
             if($username != null){
 
-                $cache = $this->request->cache('current_user');
+                $cache = $this->cache('current_user');
                 if($cache === false){
                     $url  = 'https://i.instagram.com/api/v1/accounts/current_user/?edit=true';
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     $json = json_decode($json['body']);
-                    $this->request->cache('current_user', $json);
+                    $this->cache('current_user', $json);
                     return $json->user->external_url;
                 }
                 else{
@@ -111,12 +113,12 @@
             $username = $username ?? $this->username;
             if($username != null){
 
-                $cache = $this->request->cache('current_user');
+                $cache = $this->cache('current_user');
                 if($cache === false){
                     $url  = 'https://i.instagram.com/api/v1/accounts/current_user/?edit=true';
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     $json = json_decode($json['body']);
-                    $this->request->cache('current_user', $json);
+                    $this->cache('current_user', $json);
                     return $json->user->biography;
                 }
                 else{
@@ -132,11 +134,11 @@
         public function get_user_id($username = null){
             $username = $username ?? $this->username;
             if($username != null){
-                $cache = $this->request->cache('users/'.$username.'-id');
+                $cache = $this->cache('users/'.$username.'-id');
                 if($cache === false){
                     $url = 'https://www.instagram.com/web/search/topsearch/?query='.$username;
 
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     if($json != null){
                         $json = json_decode($json['body']);
 
@@ -147,7 +149,7 @@
                             }
                         }
 
-                        $this->request->cache('users/'.$username.'-id', $user_id);
+                        $this->cache('users/'.$username.'-id', $user_id);
                     }
                 }
                 else{
@@ -160,15 +162,15 @@
         }
 
         public function get_user_posts($username = null){
-            $cache = $this->request->cache($username.'-posts');
+            $cache = $this->cache($username.'-posts');
             if($cache == false){
-                $post_hashquery = $this->request->get_post_queryhash();
+                $post_hashquery = $this->get_post_queryhash();
                 $user_id        = $this->get_user_id($username);
                 $url            = 'https://www.instagram.com/graphql/query/?query_hash='.$post_hashquery.'&variables={"id":"'.$user_id.'","first":50}';
-                $json           = $this->request->get($url);
+                $json           = $this->get($url);
                 $json           = json_decode($json['body'])->data->user;
 
-                $this->request->cache($username.'-posts', $json);
+                $this->cache($username.'-posts', $json);
 
                 $result = $json;
             }
@@ -227,13 +229,13 @@
             $username = $username ?? $this->username;
             $user_id  = $this->get_user_id($username);
 
-            $cache = $this->request->cache('users/'.$user_id);
+            $cache = $this->cache('users/'.$user_id);
             if(!$cache){
                 if($user_id != null){
                     $url  = 'https://i.instagram.com/api/v1/users/'.$user_id.'/info/';
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     $json = json_decode($json['body']);
-                    $this->request->cache('users/'.$user_id, $json);
+                    $this->cache('users/'.$user_id, $json);
                     return $json;
                 }
             }
@@ -249,13 +251,13 @@
             $username = $username ?? $this->username;
             $user_id  = $this->get_user_id($username);
 
-            $cache = $this->request->cache('users/'.$user_id.'-friendship');
+            $cache = $this->cache('users/'.$user_id.'-friendship');
             if($cache === false){
                 if($user_id != null){
                     $url  = 'https://i.instagram.com/api/v1/friendships/show/'.$user_id.'/';
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     $json = json_decode($json['body']);
-                    $this->request->cache('users/'.$user_id.'-friendship', $json);
+                    $this->cache('users/'.$user_id.'-friendship', $json);
                     return $json;
                 }
             }
@@ -283,13 +285,13 @@
 
         public function get_my_surfaces(){
 
-            $cache = $this->request->cache('surface');
+            $cache = $this->cache('surface');
             if($cache === false){
                 $url  = 'https://i.instagram.com/api/v1/scores/bootstrap/users/?surfaces=["coefficient_direct_closed_friends_ranking","coefficient_direct_recipients_ranking_variant_2","coefficient_rank_recipient_user_suggestion","coefficient_besties_list_ranking","coefficient_ios_section_test_bootstrap_ranking","autocomplete_user_list"]';
-                $json = $this->request->get($url);
+                $json = $this->get($url);
                 if($json['status'] == 'ok'){
                     $json = json_decode($json['body']);
-                    $this->request->cache('surface', $json);
+                    $this->cache('surface', $json);
                     return $json;
                 }
                 else{
@@ -304,15 +306,15 @@
         }
 
         public function get_users_score(){
-            $cache = $this->request->cache('user_score');
+            $cache = $this->cache('user_score');
             if(!$cache){
                 $username = $this->username;
                 if($username != null){
                     $url  = 'https://i.instagram.com/api/v1/banyan/banyan/?views=["direct_user_search_keypressed","group_stories_share_sheet","reshare_share_sheet","direct_inbox_active_now","story_share_sheet","forwarding_recipient_sheet","direct_user_search_nullstate","threads_people_picker"]';
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     if($json['status'] == 'ok'){
                         $json = json_decode($json['body']);
-                        $this->request->cache('user_score', $json);
+                        $this->cache('user_score', $json);
                         return $json;
                     }
                     else{
@@ -674,7 +676,7 @@
                         if($group === true and count($thread->users) > 0){
                             foreach($thread->users as $user){
                                 if($user->pk == $user_id){
-                                    $threads_id = (object)[
+                                    $threads_id = (object) [
                                         'thread_id'    => $thread->thread_id,
                                         'thread_v2_id' => $thread->thread_v2_id,
                                     ];
@@ -684,7 +686,7 @@
                         }
                         else{
                             if($thread->users[0]->pk == $user_id){
-                                $threads_id = (object)[
+                                $threads_id = (object) [
                                     'thread_id'    => $thread->thread_id,
                                     'thread_v2_id' => $thread->thread_v2_id,
                                 ];
@@ -695,7 +697,7 @@
 
                     if($threads_id == null){
                         $thread     = $this->get_create_inbox_thread($username);
-                        $threads_id = (object)[
+                        $threads_id = (object) [
                             'thread_id'    => $thread->thread->thread_id,
                             'thread_v2_id' => $thread->thread->thread_v2_id,
                         ];
@@ -703,7 +705,7 @@
                 }
                 else{
                     $thread     = $this->get_create_inbox_thread($username);
-                    $threads_id = (object)[
+                    $threads_id = (object) [
                         'thread_id'    => $thread->thread->thread_id,
                         'thread_v2_id' => $thread->thread->thread_v2_id,
                     ];
@@ -717,7 +719,7 @@
 
         public function get_inbox_threads(){
             $url  = 'https://i.instagram.com/api/v1/direct_v2/inbox/?visual_message_return_type=unseen&thread_message_limit=10&persistentBadging=true&limit=20&push_disabled=true&fetch_reason=manual_refresh';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
             return $json;
         }
@@ -725,14 +727,14 @@
         public function get_create_inbox_thread($username){
             $user_id = $this->get_user_id($username);
             $url     = 'https://i.instagram.com/api/v1/direct_v2/threads/get_by_participants/?recipient_users=%5B'.$user_id.'%5D&seq_id=1573&limit=20';
-            $json    = $this->request->get($url);
+            $json    = $this->get($url);
             $json    = json_decode($json['body']);
             return $json;
         }
 
         public function get_me_least_interacted_with(){
             $url  = 'https://i.instagram.com/api/v1/friendships/smart_groups/least_interacted_with/?search_surface=follow_list_page&query=&enable_groups=true&rank_token=e667dad2-ccf4-461a-ba53-d83f9007cc7f';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
 
             return $json;
@@ -740,7 +742,7 @@
 
         public function get_me_most_seen_in_feed(){
             $url  = 'https://i.instagram.com/api/v1/friendships/smart_groups/most_seen_in_feed/?search_surface=follow_list_page&query=&enable_groups=true&rank_token=b66b8315-8421-427b-a9c8-c99a894775b6';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
 
             return $json;
@@ -760,7 +762,7 @@
 
         public function get_my_notification(){
             $url  = 'https://i.instagram.com/api/v1/news/inbox/?mark_as_seen=false&timezone_offset=10800&push_disabled=true';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
 
             return $json;
@@ -768,7 +770,7 @@
 
         public function get_my_pending_inbox(){
             $url  = 'https://i.instagram.com/api/v1/direct_v2/pending_inbox/?visual_message_return_type=unseen&persistentBadging=true&push_disabled=true';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
 
             return $json;
@@ -776,7 +778,7 @@
 
         public function get_my_inbox(){
             $url  = 'https://i.instagram.com/api/v1/direct_v2/inbox/?visual_message_return_type=unseen&thread_message_limit=100&persistentBadging=true&limit=20&push_disabled=true&fetch_reason=manual_refresh';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
 
             return $json;
@@ -786,7 +788,7 @@
             $user_id = $this->get_user_id();
 
             $url  = 'https://i.instagram.com/api/v1/friendships/'.$user_id.'/followers/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true&rank_token=4c6947e0-bebe-4f69-a7bf-24be28dc4990';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
 
             return $json;
@@ -796,7 +798,7 @@
             $user_id = $this->get_user_id();
 
             $url  = 'https://i.instagram.com/api/v1/friendships/'.$user_id.'/following/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true&rank_token=4c6947e0-bebe-4f69-a7bf-24be28dc4990';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
 
             return $json;
@@ -806,7 +808,7 @@
             $user_id = $this->get_user_id($username);
 
             $url  = 'https://i.instagram.com/api/v1/friendships/'.$user_id.'/followers/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
 
             return $json;
@@ -816,7 +818,7 @@
             $user_id = $this->get_user_id($username);
 
             $url  = 'https://i.instagram.com/api/v1/friendships/'.$user_id.'/following/?includes_hashtags=true&search_surface=follow_list_page&query=&enable_groups=true&rank_token=4c6947e0-bebe-4f69-a7bf-24be28dc4990';
-            $json = $this->request->get($url);
+            $json = $this->get($url);
             $json = json_decode($json['body']);
 
             return $json;
@@ -827,13 +829,13 @@
             $username = $username ?? $this->username;
             $user_id  = $this->get_user_id($username);
 
-            $cache = $this->request->cache('users/multiple-account-'.$user_id);
+            $cache = $this->cache('users/multiple-account-'.$user_id);
             if(!$cache){
                 if($user_id != null){
                     $url  = 'https://i.instagram.com/api/v1/multiple_accounts/get_featured_accounts/?target_user_id='.$user_id;
-                    $json = $this->request->get($url);
+                    $json = $this->get($url);
                     $json = json_decode($json['body']);
-                    $this->request->cache('users/multiple-account-'.$user_id, $json);
+                    $this->cache('users/multiple-account-'.$user_id, $json);
                     return $json;
                 }
             }

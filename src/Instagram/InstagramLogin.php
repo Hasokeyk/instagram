@@ -2,20 +2,18 @@
 
     namespace Hasokeyk\Instagram;
 
-    class InstagramLogin{
+    class InstagramLogin extends InstagramRequest{
 
         public $username;
         public $password;
-        public $request;
+        public $functions;
 
-        function __construct($username, $password, $request){
-            $this->username = $username;
-            $this->password = $password;
-            $this->request  = $request;
-        }
+        function __construct($username, $password, $functions){
+            parent::__construct($username, $password, $functions);
 
-        public function user(){
-            return new InstagramUser($this->username, $this->password, $this->request);
+            $this->username  = $username;
+            $this->password  = $password;
+            $this->functions = $functions;
         }
 
         public function login($username = null, $password = null){
@@ -26,32 +24,32 @@
             $this->username = $username;
             $this->password = $password;
 
-            $cache = $this->request->cache('session_id');
+            $cache = $this->cache('session_id');
             if($cache === false){
 
-                $url       = 'https://i.instagram.com/api/v1/accounts/login/';
+                $url       = $this->intagram_api_url.'/api/v1/accounts/login/';
                 $password  = $this->encrypt($password);
                 $post_data = [
                     'jazoest'             => '22522',
                     'country_codes'       => '[{"country_code":"90","source":["sim","network","default","sim"]}]',
-                    'phone_id'            => $this->request->get_phone_id(),
+                    'phone_id'            => $this->get_phone_id(),
                     'enc_password'        => $password,
-                    '_csrftoken'          => $this->request->get_csrftoken(),
+                    '_csrftoken'          => $this->get_csrftoken(),
                     'username'            => $username,
-                    'adid'                => $this->request->get_adid(),
-                    'guid'                => $this->request->get_guid(),
-                    'device_id'           => $this->request->get_device_id(),
+                    'adid'                => $this->get_adid(),
+                    'guid'                => $this->get_guid(),
+                    'device_id'           => $this->get_device_id(),
                     'google_tokens'       => '[]',
                     'login_attempt_count' => '0',
                 ];
                 $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
 
-                //                $cookie = [
-                //                    'mid'       => $this->get_mid(),
-                //                    'csrftoken' => $this->$this->request->get_csrftoken(),
-                //                ];
+//                $cookie = [
+//                    'mid'       => $this->get_mid(),
+//                    'csrftoken' => $this->get_csrftoken(),
+//                ];
 
-                $result = $this->request->post($url, $post_data, $this->headers);
+                $result = $this->post($url, $post_data, $this->headers);
                 return $this->login_check($result);
 
             }
@@ -61,28 +59,28 @@
 
         }
 
-        public function two_factor_login($code = null, $two_factor_identifier = null, $verification_method = 2){
+        public function two_factor_login($code = null, $two_factor_identifier = null,$verification_method = 2 ){
 
             if($code != null and $two_factor_identifier != null){
 
                 $username = $this->username;
 
-                $url       = 'https://i.instagram.com/api/v1/accounts/two_factor_login/';
+                $url       = $this->intagram_api_url.'/api/v1/accounts/two_factor_login/';
                 $post_data = [
                     'verification_code'     => $code,
-                    'phone_id'              => $this->request->get_phone_id(),
+                    'phone_id'              => $this->get_phone_id(),
                     'two_factor_identifier' => $two_factor_identifier,
                     'trust_this_device'     => 1,
-                    '_csrftoken'            => $this->request->get_csrftoken(),
+                    '_csrftoken'            => $this->get_csrftoken(),
                     'username'              => $username,
-                    'adid'                  => $this->request->get_adid(),
-                    'guid'                  => $this->request->get_guid(),
-                    'device_id'             => $this->request->get_device_id(),
+                    'adid'                  => $this->get_adid(),
+                    'guid'                  => $this->get_guid(),
+                    'device_id'             => $this->get_device_id(),
                     'verification_method'   => $verification_method,
                 ];
                 $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
 
-                $result = $this->request->post($url, $post_data);
+                $result = $this->post($url, $post_data);
                 return $this->login_check($result);
 
             }
@@ -95,20 +93,20 @@
 
             $username = $username ?? $this->username;
 
-            $url         = 'https://i.instagram.com/api/v1/accounts/logout/';
+            $url         = $this->intagram_api_url.'/api/v1/accounts/logout/';
             $post_data   = [
-                'phone_id'          => $this->request->get_phone_id(),
-                '_csrftoken'        => $this->request->get_csrftoken(),
-                'guid'              => $this->request->get_guid(),
-                'device_id'         => $this->request->get_device_id(),
-                '_uuid'             => $this->request->get_guid(),
+                'phone_id'          => $this->get_phone_id(),
+                '_csrftoken'        => $this->get_csrftoken(),
+                'guid'              => $this->get_guid(),
+                'device_id'         => $this->get_device_id(),
+                '_uuid'             => $this->get_guid(),
                 'one_tap_app_login' => 'true',
             ];
-            $result      = $this->request->post($url, $post_data);
+            $result      = $this->post($url, $post_data);
             $result_body = json_decode($result['body']);
             if($result_body->status == 'ok'){
-                if(file_exists($this->request->cache_path.$username)){
-                    $this->request->username_delete($this->request->cache_path.$username);
+                if(file_exists($this->cache_path.$username)){
+                    $this->username_delete($this->cache_path.$username);
                 }
                 return true;
             }
@@ -121,13 +119,13 @@
                 $json_body = json_decode($json['body']);
                 if(!isset($json_body->two_factor_required)){
                     if($json_body->status == 'ok'){
-                        $cookie = $this->request->cache('session_id');
+                        $cookie = $this->cache('session_id');
                         if($cookie == false){
                             foreach($json['headers']['ig-set-authorization'] as $cookie){
-                                $this->request->cache('Bearer', $cookie);
+                                $this->cache('Bearer', $cookie);
                                 preg_match('|Bearer IGT:(.*):(.*)|isu', $cookie, $session_json);
                                 $session_json = json_decode(base64_decode($session_json[2]));
-                                $this->request->cache('session_id', $session_json->sessionid);
+                                $this->cache('session_id', $session_json->sessionid);
                             }
                         }
                         return true;
@@ -140,9 +138,9 @@
                     $two_factor_identifier = $json_body->two_factor_info->two_factor_identifier;
                     $verification_method   = 2;
 
-                    return (object)[
+                    return (object) [
                         'two_factor_identifier' => $two_factor_identifier,
-                        'verification_method'   => $verification_method,
+                        'verification_method'   => $verification_method
                     ];
                 }
             }
@@ -154,21 +152,22 @@
             $username = $username ?? $this->username;
 
             try{
-                $url         = 'https://i.instagram.com/api/v1/status/get_viewable_statuses/?include_authors=true';
-                $result      = $this->request->get($url);
+                $url         = $this->intagram_api_url.'/api/v1/status/get_viewable_statuses/?include_authors=true';
+                $result      = $this->get($url);
                 $result_body = json_decode($result['body']);
                 if(isset($result_body->status) and $result_body->status == 'ok'){
                     return true;
                 }
                 return false;
-            }catch(\Exception $err){
+            }
+            catch(\Exception $err){
                 return false;
             }
         }
 
         public function encrypt($password){
 
-            $keys          = $this->request->get_sync();
+            $keys          = $this->get_sync();
             $public_key    = $keys->pub_key;
             $public_key_id = $keys->pub_key_id;
 
