@@ -2,25 +2,45 @@
 
     namespace Hasokeyk\Instagram;
 
+    use Hasokeyk\Instagram\InstagramLogin;
+    use Hasokeyk\Instagram\InstagramMedias;
+    use Hasokeyk\Instagram\InstagramRegister;
+    use Hasokeyk\Instagram\InstagramRequest;
+    use Hasokeyk\Instagram\InstagramSmartEvents;
+    use Hasokeyk\Instagram\InstagramStatistics;
+    use Hasokeyk\Instagram\InstagramUpload;
+    use Hasokeyk\Instagram\InstagramUser;
+
     class Instagram{
 
-        public InstagramRequest     $request;
-        public InstagramLogin       $login;
-        public InstagramRegister    $register;
-        public InstagramUser        $user;
-        public InstagramStatistics  $statistics;
-        public InstagramMedias      $medias;
-        public InstagramSmartEvents $smart;
-        public InstagramUpload      $upload;
+        public $username = null;
+        public $password = null;
+
+        public \Hasokeyk\Instagram\InstagramRequest $request;
+        public \Hasokeyk\Instagram\InstagramMedias $medias;
+        public \Hasokeyk\Instagram\InstagramUser $user;
 
         public function __construct($username = null, $password = null){
-            $this->request    = new InstagramRequest($username, $password, $this);
-            $this->login      = new InstagramLogin($username, $password, $this);
-            $this->register   = new InstagramRegister($username, $password, $this);
-            $this->user       = new InstagramUser($username, $password, $this);
-            $this->statistics = new InstagramStatistics($username, $password, $this);
-            $this->upload     = new InstagramUpload($username, $password, $this);
-            $this->medias     = new InstagramMedias($username, $password, $this);
-            $this->smart      = new InstagramSmartEvents($username, $password, $this);
+
+            $this->username = $username;
+            $this->password = $password;
+
+            $this->request = $this->InstagramRequest();
+            $this->medias  = $this->InstagramMedias();
+            $this->user    = $this->InstagramUser();
+
         }
+
+        private function InstagramRequest(): InstagramRequest{
+            return new InstagramRequest($this->username, $this->password);
+        }
+
+        private function InstagramMedias(): InstagramMedias{
+            return new InstagramMedias($this->username, $this->password, $this->request);
+        }
+
+        private function InstagramUser(): InstagramUser{
+            return new InstagramUser($this->username, $this->password, $this->request);
+        }
+
     }

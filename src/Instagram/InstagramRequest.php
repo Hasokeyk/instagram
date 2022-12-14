@@ -11,23 +11,24 @@
 
         public $username = null;
         public $password = null;
-        public $functions;
 
         public $cache_path = (__DIR__).'/../cache/';
         public $cache_time = 10; //Minute
 
-        public  $proxy      = '';
-        public  $client;
-        public  $headers    = [];
-        private $app_id     = '567067343352427';
+        public $proxy = '';
+        public $client;
+        public $headers = [];
+        private $app_id = '567067343352427';
         private $device_id;
-        private $phone_id   = '01ec3ad7-f01e-4b4f-ba81-26ad8a444582';
+        private $phone_id = '01ec3ad7-f01e-4b4f-ba81-26ad8a444582';
         private $guid;
         private $adid;
-//        public  $user_agent = 'Instagram 219.0.0.12.117 Android (25/7.1.2; 320dpi; 900x1600; xiaomi; Redmi Note 8 Pro; d2q; qcom; tr_TR; 346138365)';
-        public  $user_agent = 'Instagram 257.1.0.13.119 (iPhone14,3; iOS 16_1; tr_TR; tr-TR; scale=3.00; 1284x2778; 409247554) AppleWebKit/420+';
+        //        public  $user_agent = 'Instagram 219.0.0.12.117 Android (25/7.1.2; 320dpi; 900x1600; xiaomi; Redmi Note 8 Pro; d2q; qcom; tr_TR; 346138365)';
+        public $user_agent = 'Instagram 257.1.0.13.119 (iPhone14,3; iOS 16_1; tr_TR; tr-TR; scale=3.00; 1284x2778; 409247554) AppleWebKit/420+';
+        public $functions;
 
-        function __construct($username, $password, $functions){
+        function __construct($username, $password, $functions = null){
+
             $this->username  = $username;
             $this->password  = $password;
             $this->functions = $functions;
@@ -87,11 +88,12 @@
         }
 
         public function get($url = '', $headers = null, $cookie = true, $proxy_use = true){
+
             try{
                 $headers = $headers ?? $this->ready_header();
                 $options = [
                     'headers' => $headers,
-                    'version' => 2,
+                    'version' => 3,
                     'curl'    => [
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
                     ]
@@ -107,8 +109,7 @@
                     'headers' => $res->getHeaders(),
                     'body'    => $res->getBody()->getContents(),
                 ];
-            }
-            catch(GuzzleException $exception){
+            }catch(GuzzleException $exception){
                 return [
                     'status'  => 'fail',
                     'message' => $exception->getMessage() ?? 'Empty',
@@ -125,8 +126,8 @@
                 $options = [
                     'headers'     => $headers,
                     'form_params' => ($post_data ?? null),
-                    'version'     => 2,
-                    'curl'        => [
+                    'version' => 3,
+                    'curl'    => [
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
                     ]
                 ];
@@ -141,8 +142,7 @@
                     'headers' => $res->getHeaders() ?? null,
                     'body'    => $res->getBody()->getContents(),
                 ];
-            }
-            catch(GuzzleException $exception){
+            }catch(GuzzleException $exception){
                 return [
                     'status'  => 'fail',
                     'message' => $exception->getMessage() ?? 'Empty',
@@ -162,7 +162,7 @@
                     'version' => 2,
                     'curl'    => [
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
-                    ]
+                    ],
                 ];
 
                 $res = $this->client->post($url, $options);
@@ -171,8 +171,7 @@
                     'headers' => $res->getHeaders() ?? null,
                     'body'    => $res->getBody()->getContents(),
                 ];
-            }
-            catch(GuzzleException $exception){
+            }catch(GuzzleException $exception){
                 return [
                     'status'  => 'fail',
                     'message' => $exception->getMessage() ?? 'Empty',
@@ -247,7 +246,7 @@
             $cache_file = $this->cache('csrftoken');
             if($cache_file == false){
                 $csrftoken_html = $this->get($url, $this->headers);
-                $new_html = str_replace("\\","",$csrftoken_html['body']);
+                $new_html       = str_replace("\\", "", $csrftoken_html['body']);
                 preg_match('|{"config":{"csrf_token":"(.*?)"|is', $new_html, $csrftoken);
                 $csrftoken = $csrftoken[1];
                 $this->cache('csrftoken', $csrftoken);
@@ -275,7 +274,7 @@
                 $post_data = ['signed_body' => 'SIGNATURE.'.json_encode($post_data)];
 
                 $res    = $this->post($url, $post_data, $this->headers);
-                $result = (object) [
+                $result = (object)[
                     'pub_key_id' => $res['headers']['ig-set-password-encryption-key-id'][0] ?? null,
                     'pub_key'    => $res['headers']['ig-set-password-encryption-pub-key'][0] ?? null,
                 ];
@@ -293,18 +292,19 @@
                 if(function_exists('com_create_guid')){
                     $guid = $this->guid = mb_strtolower(str_replace([
                         '{',
-                        '}'
+                        '}',
                     ], [
                         '',
-                        ''
-                    ], com_create_guid()), 'utf8');
+                        '',
+                    ], com_create_guid()), 'utf8'
+                    );
                 }
                 else{
-                    mt_srand((double) microtime() * 10000);//optional for php 4.2.0 and up.
+                    mt_srand((double)microtime() * 10000);//optional for php 4.2.0 and up.
                     $charid = strtoupper(md5(uniqid(rand(), true)));
                     $hyphen = chr(45);// "-"
                     $uuid   = chr(123)// "{"
-                              .substr($charid, 0, 8).$hyphen.substr($charid, 8, 4).$hyphen.substr($charid, 12, 4).$hyphen.substr($charid, 16, 4).$hyphen.substr($charid, 20, 12).chr(125);// "}"
+                        .substr($charid, 0, 8).$hyphen.substr($charid, 8, 4).$hyphen.substr($charid, 12, 4).$hyphen.substr($charid, 16, 4).$hyphen.substr($charid, 20, 12).chr(125);// "}"
                     $guid   = $this->guid = $uuid;
                 }
                 $this->cache('guid', $guid);
@@ -321,18 +321,19 @@
                 if(function_exists('com_create_guid')){
                     $guid = $this->guid = mb_strtolower(str_replace([
                         '{',
-                        '}'
+                        '}',
                     ], [
                         '',
-                        ''
-                    ], com_create_guid()), 'utf8');
+                        '',
+                    ], com_create_guid()), 'utf8'
+                    );
                 }
                 else{
-                    mt_srand((double) microtime() * 10000);//optional for php 4.2.0 and up.
+                    mt_srand((double)microtime() * 10000);//optional for php 4.2.0 and up.
                     $charid = strtoupper(md5(uniqid(rand(), true)));
                     $hyphen = chr(45);// "-"
                     $uuid   = chr(123)// "{"
-                              .substr($charid, 0, 8).$hyphen.substr($charid, 8, 4).$hyphen.substr($charid, 12, 4).$hyphen.substr($charid, 16, 4).$hyphen.substr($charid, 20, 12).chr(125);// "}"
+                        .substr($charid, 0, 8).$hyphen.substr($charid, 8, 4).$hyphen.substr($charid, 12, 4).$hyphen.substr($charid, 16, 4).$hyphen.substr($charid, 20, 12).chr(125);// "}"
                     $guid   = $this->guid = $uuid;
                 }
                 $this->cache('adid', $guid);
@@ -349,18 +350,19 @@
                 if(function_exists('com_create_guid')){
                     $guid = $this->guid = mb_strtolower(str_replace([
                         '{',
-                        '}'
+                        '}',
                     ], [
                         '',
-                        ''
-                    ], com_create_guid()), 'utf8');
+                        '',
+                    ], com_create_guid()), 'utf8'
+                    );
                 }
                 else{
-                    mt_srand((double) microtime() * 10000);//optional for php 4.2.0 and up.
+                    mt_srand((double)microtime() * 10000);//optional for php 4.2.0 and up.
                     $charid = strtoupper(md5(uniqid(rand(), true)));
                     $hyphen = chr(45);// "-"
                     $uuid   = chr(123)// "{"
-                              .substr($charid, 0, 8).$hyphen.substr($charid, 8, 4).$hyphen.substr($charid, 12, 4).$hyphen.substr($charid, 16, 4).$hyphen.substr($charid, 20, 12).chr(125);// "}"
+                        .substr($charid, 0, 8).$hyphen.substr($charid, 8, 4).$hyphen.substr($charid, 12, 4).$hyphen.substr($charid, 16, 4).$hyphen.substr($charid, 20, 12).chr(125);// "}"
                     $guid   = $this->guid = $uuid;
                 }
                 $this->cache('phone_id', $guid);
@@ -377,18 +379,19 @@
                 if(function_exists('com_create_guid')){
                     $guid = $this->guid = mb_strtolower(str_replace([
                         '{',
-                        '}'
+                        '}',
                     ], [
                         '',
-                        ''
-                    ], com_create_guid()), 'utf8');
+                        '',
+                    ], com_create_guid()), 'utf8'
+                    );
                 }
                 else{
-                    mt_srand((double) microtime() * 10000);//optional for php 4.2.0 and up.
+                    mt_srand((double)microtime() * 10000);//optional for php 4.2.0 and up.
                     $charid = strtoupper(md5(uniqid(rand(), true)));
                     $hyphen = chr(45);// "-"
                     $uuid   = chr(123)// "{"
-                              .substr($charid, 0, 8).$hyphen.substr($charid, 8, 4).$hyphen.substr($charid, 12, 4).$hyphen.substr($charid, 16, 4).$hyphen.substr($charid, 20, 12).chr(125);// "}"
+                        .substr($charid, 0, 8).$hyphen.substr($charid, 8, 4).$hyphen.substr($charid, 12, 4).$hyphen.substr($charid, 16, 4).$hyphen.substr($charid, 20, 12).chr(125);// "}"
                     $guid   = $this->guid = $uuid;
                 }
                 $this->cache('device_id', $guid);
@@ -421,7 +424,7 @@
                     'usage'    => 'prefill',
                 ];
                 $post_data = [
-                    'signed_body' => 'SIGNATURE.'.json_encode($post_data)
+                    'signed_body' => 'SIGNATURE.'.json_encode($post_data),
                 ];
                 $res       = $this->post($url, $post_data, $this->headers);
                 if(isset($res['headers']['ig-set-xmid'])){
@@ -475,8 +478,8 @@
         public function create_cookie($array = false, $session_id = true){
 
             $cookies_array = [
-                'mid'       => 'YB2r4AABAAERcl5ESNxLjr_tt4Q5',
-//                'csrftoken' => $this->get_csrftoken(),
+                'mid' => 'YB2r4AABAAERcl5ESNxLjr_tt4Q5',
+                //                'csrftoken' => $this->get_csrftoken(),
             ];
 
             if($session_id === true){
@@ -498,7 +501,7 @@
         public function username_delete($dir){
             $files = array_diff(scandir($dir), [
                 '.',
-                '..'
+                '..',
             ]);
             foreach($files as $file){
                 (is_dir("$dir/$file")) ? $this->username_delete("$dir/$file") : unlink("$dir/$file");

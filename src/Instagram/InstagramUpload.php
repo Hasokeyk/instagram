@@ -6,14 +6,10 @@
 
         public $username;
         public $password;
-        public $functions;
 
-        function __construct($username, $password, $functions){
-            parent::__construct($username, $password, $functions);
-
+        function __construct($username, $password){
             $this->username  = $username;
             $this->password  = $password;
-            $this->functions = $functions;
         }
 
         public function get_upload_session_id($upload_id = null, $r_upload_param = 0){
